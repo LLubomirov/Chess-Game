@@ -1,11 +1,24 @@
 #include "board.h"
 
-void Board::printBoard() {
+Board::Board()
+{
+	for(int i = 0; i < BOARD_ROWS; ++i)
+	{
+		for(int j = 0; j < BOARD_COLUMNS; ++j)
+		{
+			this->board[i][j].setFigure(new EmptyFigure (EMPTY, NONE, i, j));
+		}
+	}
+}
+
+
+void Board::printBoard() 
+{
 	cout << "   y: 0  1  2  3  4  5  6  7 " << endl << "x:" << endl;
-	for (int i = 0; i < 8; i++)
+	for (int i = 0; i < BOARD_ROWS; i++)
 	{
 		cout << " " << i << "   ";
-		for (int j = 0; j < 8; j++)
+		for (int j = 0; j < BOARD_COLUMNS; j++)
 		{
 			cout << " ";
 			char figure = board[i][j].getFigure()->printFigureOnBoard();
@@ -14,34 +27,32 @@ void Board::printBoard() {
 		}
 		cout << endl;
 	}
-
 }
 
 bool Board::doMove() 
 {
-	string move;
-	int x1, x2, y1, y2;
 	bool stop = false;
 	while (!stop)
 	{
 		(turn == WHITE) ? cout << "White's turn" << endl : cout << "Black's turn" << endl;
 		cout << "Type in your move as a single four character string. Use x-coordinates first in each pair." << endl;
+		string move;
 		cin >> move;
-		x1 = move[0] - 48; 
-		y1 = move[1] - 48;
-		x2 = move[2] - 48;
-		y2 = move[3] - 48;
-		if (getSquare(x1, y1)->getColor() == turn)
+		int startX = charToInt(move[0]); 
+		int startY = charToInt(move[1]);
+		int destinationX = charToInt(move[2]);
+		int destinationY = charToInt(move[3]);
+		if (board[startX][startY].getFigureColor() == turn)
 		{
-			if (makeMove(&board[x1][y1], &board[x2][y2]) == false)
+			if (isPossibleMove(&board[startX][startY], &board[destinationX][destinationY]) == false)
 			{
 				cout << "Invalid move, try again." << endl;
 			}
 			else
 			{
-				if (getSquare(x2, y2)->getFigure()->getType() == KING)
+				if (board[destinationX][destinationY].getFigure()->getType() == KING)
 				{
-					if (getSquare(x1, y1)->getColor() == WHITE)
+					if (board[startX][startY].getFigureColor() == WHITE)
 					{
 						cout << "WHITE WINS" << endl;
 						return false;
@@ -52,9 +63,9 @@ bool Board::doMove()
 						return false;
 					}
 				}
-				board[x1][y1].setPosition(x2, y2);
-				board[x2][y2].setFigure(board[x1][y1].getFigure());
-				board[x1][y1].setFigure(new EmptyFigure(EMPTY, NONE, x1, y1));
+				board[startX][startY].setFigurePosition(destinationX, destinationY);
+				board[destinationX][destinationY].setFigure(board[startX][startY].getFigure());
+				board[startX][startY].setFigure(new EmptyFigure(EMPTY, NONE, startX, startY));
 				stop = true;
 			}
 		}
@@ -69,6 +80,12 @@ bool Board::doMove()
 
 	return true;
 
+}
+
+int Board::charToInt(char input)
+{
+	int num = input - 48;
+	return num;
 }
 
 void Board::setBoard()
@@ -106,20 +123,19 @@ bool Board::playGame()
 	return doMove();
 }
 
-bool Board::validPositionOnBoard(Square *position)
+bool Board::isValidPositionOnBoard(Square *position)
 {
-	int positionX = position->getX();
-	int positionY = position->getY();
+	int positionX = position->getFigureX();
+	int positionY = position->getFigureY();
 	return  positionX >= 0 && 
-			positionX < 8 &&
+			positionX < BOARD_ROWS &&
 			positionY >= 0 && 
-			positionY < 8;
+			positionY < BOARD_COLUMNS;
 }
 
 bool Board::isValidMove(Square *start, Square *destination)
 {
-	FigureColor startColor = start->getColor();
-	vector<pair<int, int>> path = start->getFigure()->generatePathOfPairs(destination->getX(), destination->getY());
+	vector<pair<int, int>> path = generatePath(start, destination);
 	bool isValid = !path.empty();
 	if(isValid)
 	{
@@ -127,7 +143,7 @@ bool Board::isValidMove(Square *start, Square *destination)
 	}
 	for(pair<int, int> &p : path)
 	{
-		if(board[p.first][p.second].getColor() != NONE)
+		if(board[p.first][p.second].getFigureColor() != NONE)
 		{
 			isValid = false;
 		}
@@ -136,42 +152,93 @@ bool Board::isValidMove(Square *start, Square *destination)
 	return isValid;
 }
 
-bool Board::makeMove(Square *start, Square *destination) 
+vector<pair<int, int>> Board::generatePath(Square *start, Square *destination)
 {
-	if(!(validPositionOnBoard(start) && validPositionOnBoard(destination)))
-	{
-		cout << "One of your inputs was our of bounds" << endl;
-		return false;
-	}
+	int destinationX = destination->getFigureX();
+	int destinationY = destination->getFigureY();
+	Figure* startFigure = start->getFigure();
+	vector<pair<int, int>> path = startFigure->generatePathOfPairs(destinationX, destinationY);
 
-	if(start->getColor() == destination->getColor() && destination->getColor() != NONE)
-	{
-		cout << "Invalid move: cannot land on your own piece: " << endl;
-		return false;
-	}
+	return path;
+}
 
-	if(start->getColor() != turn)
+bool Board::isPossibleMove(Square *start, Square *destination) 
+{
+	if(isIncorrectInput(start, destination))
 	{
-		cout << "You do not have a piece there" << endl;
 		return false;
 	}
 	
-	if(start->getFigure()->getType() == PAWN && abs(start->getX() - destination->getX()) == 1)
+	if(isPawn(start) && abs(start->getFigureX() - destination->getFigureX()) == 1)
 	{
-		if ((start->getFigure()->isWhite()) ? 
-				destination->getFigure()->isBlack() && destination->getY() - start->getY() == 1 : 
-				destination->getFigure()->isWhite() && destination->getY() - start->getY() == -1)
-		{
-			return true;
-		}
+		return isPawnDiagonalMove(start, destination);
 	}
 
 	if(isValidMove(start, destination))
 	{
 		return true;
 	}
+	return false;
+}
 
+bool Board::isIncorrectInput(Square *start, Square *destination)
+{
+	if(!(isValidPositionOnBoard(start) && isValidPositionOnBoard(destination)))
+	{
+		cout << "One of your inputs was our of bounds" << endl;
+		return true;
+	}
+
+	if(start->getFigureColor() != turn)
+	{
+		cout << "You do not have a piece there" << endl;
+		return true;
+	}
+
+	if(start->getFigureColor() == destination->getFigureColor() && destination->getFigureColor() != NONE)
+	{
+		cout << "Invalid move: cannot land on your own piece: " << endl;
+		return true;
+	}
 
 	return false;
 }
 
+bool Board::isPawn(Square *square)
+{
+	Figure *figure = square->getFigure();
+	return figure->getType() == PAWN;
+}
+
+bool Board::isPawnDiagonalMove(Square *start, Square *destination)
+{
+	Figure *startFigure = start->getFigure(); 
+	Figure *destinationFigure = destination->getFigure(); 
+	
+	return isBlackPawnAttack(startFigure, destinationFigure) ||
+		   isWhitePawnAttack(startFigure, destinationFigure);
+}
+
+bool Board::isBlackPawnAttack(Figure *startFigure, Figure *destinationFigure)
+{
+	return (startFigure->isBlack() && 
+	        destinationFigure->isWhite() 
+			&& isMoveLeft(startFigure, destinationFigure));
+}
+
+bool Board::isWhitePawnAttack(Figure *startFigure, Figure *destinationFigure)
+{
+	return (startFigure->isWhite() && 
+		 	destinationFigure->isBlack() && 
+			isMoveRight(startFigure, destinationFigure));
+}
+
+bool Board::isMoveRight(Figure *startFigure, Figure *destinationFigure)
+{
+	return destinationFigure->getFigureY() - startFigure->getFigureY() == 1;
+}
+
+bool Board::isMoveLeft(Figure *startFigure, Figure *destinationFigure)
+{
+	return destinationFigure->getFigureY() - startFigure->getFigureY() == -1;
+}

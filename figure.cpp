@@ -64,12 +64,6 @@ public:
         return this->figureY;
     }
 
-    void setFigureAndColor(FigureType newFigureType, FigureColor newFigureColor)
-    {
-        this->figureType = newFigureType;
-        this->figureColor = newFigureColor;
-    }
-
     void setPosition(int newFigureX, int newFigureY)
     {
         this->figureX = newFigureX;

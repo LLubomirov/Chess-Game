@@ -21,38 +21,26 @@ private:
 	Square board[BOARD_ROWS][BOARD_COLUMNS];
 	FigureColor turn = WHITE;
 
-	bool makeMove(Square *start, Square *destination);
-	bool validPositionOnBoard(Square *position);
+	bool isPossibleMove(Square *start, Square *destination);
+	bool isIncorrectInput(Square *start, Square *destination);
+	bool isValidPositionOnBoard(Square *position);
 	bool isValidMove(Square *start, Square *destination);
-	
+	bool isPawnDiagonalMove(Square *start, Square *destination);
+	bool isWhitePawnAttack(Figure *startFigure, Figure *destinationFigure);
+	bool isBlackPawnAttack(Figure *startFigure, Figure *destinationFigure);
+	bool isMoveRight(Figure *startFigure, Figure *destinationFigure);
+	bool isMoveLeft(Figure *startFigure, Figure *destinationFigure);
+	bool isPawn(Square *square);
 
 public:
-	void printBoard();
-
-	Board()
-	{
-		for(int i = 0; i < BOARD_ROWS; ++i)
-		{
-			for(int j = 0; j < BOARD_COLUMNS; ++j)
-			{
-				this->board[i][j].setFigure(new EmptyFigure (EMPTY, NONE, i, j));
-			}
-		}
-	}
-
-	Square* getSquare(int x, int y) 
-	{
-		return &board[x][y];
-	}
-
-	void setSquare(Square * s, int x, int y)
-	{
-		board[x][y]=*s;
-	}
-
+	Board();
 	bool playGame();
+
+	void printBoard();
 	void setBoard(); 
 	bool doMove(); 
+	int charToInt(char input);
+	vector<pair<int, int>> generatePath(Square *start, Square *destination);
 };
 
 #endif

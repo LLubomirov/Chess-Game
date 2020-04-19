@@ -23,22 +23,27 @@ public:
         return this->figure;
     }
 
-    int getX() const
+    int getFigureX() const
     {
         return this->figure->getFigureX();
     }
 
-    int getY() const
+    int getFigureY() const
     {
         return this->figure->getFigureY();
     }
 
-    FigureColor getColor()
+    FigureColor getFigureColor() 
     {
         return this->getFigure()->getColor();
     }
 
-    void setPosition(int newFigureX, int newFigureY)
+    FigureType getFigureType()
+    {
+        return this->getFigure()->getType();
+    }
+
+    void setFigurePosition(int newFigureX, int newFigureY)
     {
         this->figure->setPosition(newFigureX, newFigureY);
     }
