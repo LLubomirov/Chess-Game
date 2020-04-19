@@ -1,31 +1,24 @@
-#include <iostream>
-#include <string>
-#include "chess.cpp"
-
-using namespace std;
-
-
-
-
+#include "board.cpp"
 
 int main()
 {
-	Board b;
-	string s;
-	bool newgame = true;
 	cout << "   _____ _    _ ______  _____ _____ \n  / ____| |  | |  ____|/ ____/ ____| \n | |    | |__| | |__  | (___| (___  \n | |    |  __  |  __|  \\___  \\___ \\ \n | |____| |  | | |____ ____) |___) | \n  \\_____|_|  |_|______|_____/_____/ \n" << endl;
 	cout << "Enter any key to continue" << endl;
-	cin >> s;
+	string pressAnyKey;
+	cin >> pressAnyKey;
 
-	while(newgame){
+	bool newgame = true;
+	while(newgame)
+	{
+		Board b;
 		b.setBoard();
 		while (b.playGame());
 		cout << "Do you want to play again? (y for yes, anything else for no) ";
-		cin >> s;
-		if (s != "y")
+		string continuePlaying;
+		cin >> continuePlaying;
+		if (continuePlaying != "y")
 			newgame = false;
 	}
-
 
 	return 0;
 }
