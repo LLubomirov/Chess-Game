@@ -12,12 +12,14 @@ int main()
 	{
 		Board b;
 		b.setBoard();
-		while (b.playGame());
+		b.playGame();
 		cout << "Do you want to play again? (y for yes, anything else for no) ";
 		string continuePlaying;
 		cin >> continuePlaying;
 		if (continuePlaying != "y")
+		{
 			newgame = false;
+		}
 	}
 
 	return 0;

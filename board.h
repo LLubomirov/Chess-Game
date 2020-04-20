@@ -12,7 +12,6 @@
 #define BOARD_ROWS 8
 #define BOARD_COLUMNS 8
 
-
 class Figure;
 
 class Board
@@ -20,7 +19,11 @@ class Board
 private:
 	Square board[BOARD_ROWS][BOARD_COLUMNS];
 	FigureColor turn = WHITE;
+	FigureType lastTakenFigure = EMPTY; 
 
+	vector<pair<int, int>> generatePath(Square *start, Square *destination);
+	void printBoard();
+	void doMove(); 
 	bool isPossibleMove(Square *start, Square *destination);
 	bool isIncorrectInput(Square *start, Square *destination);
 	bool isValidPositionOnBoard(Square *position);
@@ -31,16 +34,16 @@ private:
 	bool isMoveRight(Figure *startFigure, Figure *destinationFigure);
 	bool isMoveLeft(Figure *startFigure, Figure *destinationFigure);
 	bool isPawn(Square *square);
+	bool isCorrectMove(Square *start, Square *destination);
+	void switchPlayerTurn();
+	bool thereIsWinner();
+	void attackFigure(Square *attacker, Square *attacked);
 
 public:
 	Board();
-	bool playGame();
-
-	void printBoard();
 	void setBoard(); 
-	bool doMove(); 
+	void playGame();
 	int charToInt(char input);
-	vector<pair<int, int>> generatePath(Square *start, Square *destination);
 };
 
 #endif
