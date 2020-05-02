@@ -7,6 +7,7 @@ public:
     char printFigureOnBoard()
     {
         char bishopSymbol = (isWhite()) ? 'B' : 'b';
+
         return bishopSymbol;
     }
 
@@ -17,6 +18,7 @@ public:
         {
             pathOfPairs = generatePathHelper(destinationX, destinationY);
         }
+        
         return pathOfPairs;
     }
 

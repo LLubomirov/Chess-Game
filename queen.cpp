@@ -7,6 +7,7 @@ public:
     char printFigureOnBoard()
     {
         char queenSymbol = (isWhite()) ? 'Q' : 'q';
+        
         return queenSymbol;
     }
 

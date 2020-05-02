@@ -7,6 +7,7 @@ public:
     char printFigureOnBoard()
     {
         char kingSymbol = (isWhite()) ? 'K' : 'k';
+
         return kingSymbol;
     }
 
@@ -17,6 +18,7 @@ public:
         {
             pathOfPairs.push_back({destinationX, destinationY});
         }
+        
         return pathOfPairs;
     }
 

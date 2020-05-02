@@ -7,6 +7,7 @@ public:
     char printFigureOnBoard()
     {
         char pawnSymbol = (isWhite()) ? 'P' : 'p';
+
         return pawnSymbol;
     }
 
@@ -17,6 +18,7 @@ public:
         {
             pathOfPairs.push_back({destinationX, destinationY});
         }
+        
         return pathOfPairs;
     }
 

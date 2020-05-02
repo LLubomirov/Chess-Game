@@ -16,6 +16,12 @@ class Figure;
 
 class Board
 {
+public:
+	Board();
+	void setBoard(); 
+	void playGame();
+	int charToInt(char input);
+
 private:
 	Square board[BOARD_ROWS][BOARD_COLUMNS];
 	FigureColor turn = WHITE;
@@ -38,12 +44,6 @@ private:
 	void switchPlayerTurn();
 	bool thereIsWinner();
 	void attackFigure(Square *attacker, Square *attacked);
-
-public:
-	Board();
-	void setBoard(); 
-	void playGame();
-	int charToInt(char input);
 };
 
 #endif

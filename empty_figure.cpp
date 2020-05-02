@@ -7,12 +7,14 @@ public:
     char printFigureOnBoard()
     {
         char emptySymbol = '_';
+
         return emptySymbol;
     }
 
     vector<pair<int, int>> generatePathOfPairs(int destinationX, int destinationY)
     {
         vector<pair<int, int>> pathOfPairs;
+        
         return pathOfPairs;
     }
 };

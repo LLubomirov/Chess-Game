@@ -2,23 +2,20 @@
 
 class Square
 {
-private:
-    Figure* figure;
-
 public:
 
     Square()
     {
-        Figure *p;
-        figure = p;
+        Figure *_figure;
+        figure = _figure;
     }
 
-    Square(Figure *_p)
+    Square(Figure *_figure)
     {
-        this->figure = _p;
+        this->figure = _figure;
     }
 
-    Figure *getFigure()
+    Figure *getFigure() const
     {
         return this->figure;
     }
@@ -33,12 +30,12 @@ public:
         return this->figure->getFigureY();
     }
 
-    FigureColor getFigureColor() 
+    FigureColor getFigureColor() const
     {
         return this->getFigure()->getColor();
     }
 
-    FigureType getFigureType()
+    FigureType getFigureType() const
     {
         return this->getFigure()->getType();
     }
@@ -52,4 +49,7 @@ public:
     {
         this->figure = newFigure;
     }
+
+private:
+    Figure* figure;
 };

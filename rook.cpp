@@ -7,6 +7,7 @@ public:
     char printFigureOnBoard()
     {
         char rookSymbol = (isWhite()) ? 'R' : 'r';
+
         return rookSymbol;
     }
 
@@ -17,6 +18,7 @@ public:
         {
             pathOfPairs = generatePathHelper(destinationX, destinationY);
         }
+        
         return pathOfPairs;
     }
 

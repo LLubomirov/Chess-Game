@@ -201,8 +201,8 @@ bool Board::isPawnDiagonalMove(Square *start, Square *destination)
 	Figure *startFigure = start->getFigure(); 
 	Figure *destinationFigure = destination->getFigure(); 
 	
-	return isBlackPawnAttack(startFigure, destinationFigure) ||
-		isWhitePawnAttack(startFigure, destinationFigure);
+	return isBlackPawnAttack(startFigure, destinationFigure) || 
+		   isWhitePawnAttack(startFigure, destinationFigure);
 }
 
 bool Board::isBlackPawnAttack(Figure *startFigure, Figure *destinationFigure)
