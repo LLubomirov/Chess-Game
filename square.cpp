@@ -6,13 +6,13 @@ public:
 
     Square()
     {
-        Figure *_figure;
-        figure = _figure;
+        Figure *figure;
+        this->figure = figure;
     }
 
-    Square(Figure *_figure)
+    Square(Figure *figure)
     {
-        this->figure = _figure;
+        this->figure = figure;
     }
 
     Figure *getFigure() const
@@ -20,22 +20,22 @@ public:
         return this->figure;
     }
 
-    int getFigureX() const
+    int getX() const
     {
         return this->figure->getX();
     }
 
-    int getFigureY() const
+    int getY() const
     {
         return this->figure->getY();
     }
 
-    FigureColor getFigureColor() const
+    FigureColor getColor() const
     {
         return this->getFigure()->getColor();
     }
 
-    FigureType getFigureType() const
+    FigureType getType() const
     {
         return this->getFigure()->getType();
     }

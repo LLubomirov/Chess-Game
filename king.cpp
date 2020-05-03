@@ -4,22 +4,22 @@ public:
     King(FigureType figureType, FigureColor figureColor, int figureX, int figureY) :
         Figure(figureType, figureColor, figureX, figureY){}
 
-    char printFigureOnBoard()
+    char print()
     {
         char kingSymbol = (isWhite()) ? 'K' : 'k';
 
         return kingSymbol;
     }
 
-    vector<pair<int, int>> generatePathOfPairs(int destinationX, int destinationY)
+    vector<pair<int, int>> generatePath(int destinationX, int destinationY)
     {
-        vector<pair<int, int>> pathOfPairs;
+        vector<pair<int, int>> path;
         if(isAccessible(destinationX, destinationY))
         {
-            pathOfPairs.push_back({destinationX, destinationY});
+            path.push_back({destinationX, destinationY});
         }
         
-        return pathOfPairs;
+        return path;
     }
 
     bool isAccessible(int destinationX, int destinationY)

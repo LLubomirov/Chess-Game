@@ -11,7 +11,6 @@ int main()
 	while(newgame)
 	{
 		Board b;
-		b.setBoard();
 		b.playGame();
 		cout << "Do you want to play again? (y for yes, anything else for no) ";
 		string continuePlaying;

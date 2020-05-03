@@ -18,8 +18,8 @@ private:
     int y;
 
 public:
-    virtual vector<pair<int, int>> generatePathOfPairs(int destinationX, int destinationY) = 0;
-    virtual char printFigureOnBoard() = 0;
+    virtual vector<pair<int, int>> generatePath(int destinationX, int destinationY) = 0;
+    virtual char print() = 0;
 
     Figure(FigureType type, FigureColor color, int x, int y)
     {

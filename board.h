@@ -17,34 +17,35 @@ class Figure;
 class Board
 {
 public:
-	Board();
-	void setBoard(); 
 	void playGame();
+	Board();
 
 private:
 	Square board[BOARD_ROWS][BOARD_COLUMNS];
 	FigureColor turn = WHITE;
 	FigureType lastTakenFigure = EMPTY; 
+	Square *start;
+	Square *destination;
 
-	Square* start;
-	Square* destination;
-
+	void setBoard(); 
+	void setStart(Square*);
+	void setDestination(Square*);
 	bool thereIsWinner();
 	void printBoard();
 	void readMove(); 
 	void doMove();
 	int charToInt(char input);
-	bool isCorrectMove(Square *start, Square *destination);
-	bool isCorrectInput(Square *start, Square *destination);
+	bool isCorrectMove();
+	bool isCorrectInput();
 	bool isValidPositionOnBoard(Square *position);
 	bool isPawn(Square *square);
-	bool isPawnDiagonalMove(Square *start, Square *destination);
+	bool isPawnDiagonalMove();
 	bool isBlackPawnAttack(Figure *startFigure, Figure *destinationFigure);
 	bool isMoveLeft(Figure *startFigure, Figure *destinationFigure);
 	bool isWhitePawnAttack(Figure *startFigure, Figure *destinationFigure);
 	bool isMoveRight(Figure *startFigure, Figure *destinationFigure);
-	bool isValidMove(Square *start, Square *destination);
-	vector<pair<int, int>> generatePath(Square *start, Square *destination);
+	bool isValidMove();
+	vector<pair<int, int>> generatePath();
 	void attackFigure(Square *attacker, Square *attacked);
 	void switchPlayerTurn();
 };
