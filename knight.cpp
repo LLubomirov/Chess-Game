@@ -24,7 +24,7 @@ public:
 
     bool isAccessible(int destinationX, int destinationY)
     {
-        return (abs(getFigureX() - destinationX) == 2 && abs(getFigureY() - destinationY) == 1) ||
-               (abs(getFigureX() - destinationX) == 1 && abs(getFigureY() - destinationY) == 2);
+        return (abs(getX() - destinationX) == 2 && abs(getY() - destinationY) == 1) ||
+               (abs(getX() - destinationX) == 1 && abs(getY() - destinationY) == 2);
     }
 };

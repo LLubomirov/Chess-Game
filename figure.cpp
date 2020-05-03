@@ -12,61 +12,61 @@ class Square;
 class Figure 
 {
 private:
-    FigureType figureType;
-    FigureColor figureColor;
-    int figureX;
-    int figureY;
+    FigureType type;
+    FigureColor color;
+    int x;
+    int y;
 
 public:
     virtual vector<pair<int, int>> generatePathOfPairs(int destinationX, int destinationY) = 0;
     virtual char printFigureOnBoard() = 0;
 
-    Figure(FigureType figureType, FigureColor figureColor, int figureX, int figureY)
+    Figure(FigureType type, FigureColor color, int x, int y)
     {
-        this->figureType = figureType;
-        this->figureColor = figureColor;
-        this->figureX = figureX;
-        this->figureY = figureY;
+        this->type = type;
+        this->color = color;
+        this->x = x;
+        this->y = y;
     }
 
     bool isWhite() const
     {
-        return this->figureColor == WHITE;
+        return this->color == WHITE;
     }
 
     bool isBlack() const
     {
-        return this->figureColor == BLACK;
+        return this->color == BLACK;
     }
     
     bool isEmpty() const
     {
-        return this->figureColor == NONE;
+        return this->color == NONE;
     }
 
     FigureColor getColor() const
     {
-        return this->figureColor;
+        return this->color;
     }
 
     FigureType getType() const
     {
-        return this->figureType;
+        return this->type;
     }
 
-    int getFigureX() const
+    int getX() const
     {
-        return this->figureX;
+        return this->x;
     }
 
-    int getFigureY() const
+    int getY() const
     {
-        return this->figureY;
+        return this->y;
     }
 
-    void setPosition(int newFigureX, int newFigureY)
+    void setPosition(int newX, int newY)
     {
-        this->figureX = newFigureX;
-        this->figureY = newFigureY;
+        this->x = newX;
+        this->y = newY;
     }
 };

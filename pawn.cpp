@@ -24,6 +24,6 @@ public:
 
     bool isAccessible(int destinationX, int destinationY)
     {
-        return (isWhite()) ? (getFigureY() == destinationY - 1) : (getFigureY() == destinationY + 1);
+        return (isWhite()) ? (getY() == destinationY - 1) : (getY() == destinationY + 1);
     }
 };

@@ -22,12 +22,12 @@ public:
 
     int getFigureX() const
     {
-        return this->figure->getFigureX();
+        return this->figure->getX();
     }
 
     int getFigureY() const
     {
-        return this->figure->getFigureY();
+        return this->figure->getY();
     }
 
     FigureColor getFigureColor() const
@@ -40,9 +40,9 @@ public:
         return this->getFigure()->getType();
     }
 
-    void setFigurePosition(int newFigureX, int newFigureY)
+    void setFigurePosition(int newX, int newY)
     {
-        this->figure->setPosition(newFigureX, newFigureY);
+        this->figure->setPosition(newX, newY);
     }
 
     void setFigure(Figure *newFigure)

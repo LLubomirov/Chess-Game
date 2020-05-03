@@ -34,16 +34,16 @@ public:
 
     bool isHorizontalMove(int destinationX, int destinationY)
     {
-        return getFigureX() == destinationX && abs(getFigureY() - destinationY) == 1;
+        return getX() == destinationX && abs(getY() - destinationY) == 1;
     }
 
     bool isVerticalMove(int destinationX, int destinationY)
     {
-        return abs(getFigureX() - destinationX) == 1 && getFigureY() == destinationY;
+        return abs(getX() - destinationX) == 1 && getY() == destinationY;
     }
 
     bool isDiagonalMove(int destinationX, int destinationY)
     {
-        return abs(getFigureX() - destinationX) == abs(getFigureY() - destinationY) && abs(getFigureX() - destinationX) == 1;
+        return abs(getX() - destinationX) == abs(getY() - destinationY) && abs(getX() - destinationX) == 1;
     }
 };

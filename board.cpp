@@ -101,8 +101,6 @@ void Board::doMove()
 	while(!isCorrectMove(start, destination));
 
 	attackFigure(start, destination);
-			
-			
 }
 
 int Board::charToInt(char input)
@@ -115,7 +113,17 @@ bool Board::isCorrectMove(Square *start, Square *destination)
 {
 	if (start->getFigureColor() == turn)
 	{
-		if (isPossibleMove(start, destination))
+		if(isCorrectInput(start, destination))
+		{
+			return true;
+		}
+		
+		if(isPawn(start) && abs(start->getFigureX() - destination->getFigureX()) == 1)
+		{
+			return isPawnDiagonalMove(start, destination);
+		}
+
+		if(isValidMove(start, destination))
 		{
 			return true;
 		}
@@ -136,47 +144,30 @@ bool Board::isCorrectMove(Square *start, Square *destination)
 	}
 }
 
-bool Board::isPossibleMove(Square *start, Square *destination) 
-{
-	if(isIncorrectInput(start, destination))
-	{
-		return false;
-	}
-	
-	if(isPawn(start) && abs(start->getFigureX() - destination->getFigureX()) == 1)
-	{
-		return isPawnDiagonalMove(start, destination);
-	}
-
-	if(isValidMove(start, destination))
-	{
-		return true;
-	}
-
-	return false;
-}
-
-bool Board::isIncorrectInput(Square *start, Square *destination)
+bool Board::isCorrectInput(Square *start, Square *destination)
 {
 	if(!(isValidPositionOnBoard(start) && isValidPositionOnBoard(destination)))
 	{
 		cout << "One of your inputs was our of bounds" << endl;
-		return true;
+
+		return false;
 	}
 
 	if(start->getFigureColor() != turn)
 	{
 		cout << "You do not have a figure there" << endl;
-		return true;
+
+		return false;
 	}
 
 	if(start->getFigureColor() == destination->getFigureColor() && destination->getFigureColor() != NONE)
 	{
 		cout << "Invalid move: cannot land on your own figure " << endl;
-		return true;
+
+		return false;
 	}
 
-	return false;
+	return true;
 }
 
 bool Board::isValidPositionOnBoard(Square *position)
@@ -214,7 +205,7 @@ bool Board::isBlackPawnAttack(Figure *startFigure, Figure *destinationFigure)
 
 bool Board::isMoveLeft(Figure *startFigure, Figure *destinationFigure)
 {
-	return destinationFigure->getFigureY() - startFigure->getFigureY() == -1;
+	return destinationFigure->getY() - startFigure->getY() == -1;
 }
 
 bool Board::isWhitePawnAttack(Figure *startFigure, Figure *destinationFigure)
@@ -226,7 +217,7 @@ bool Board::isWhitePawnAttack(Figure *startFigure, Figure *destinationFigure)
 
 bool Board::isMoveRight(Figure *startFigure, Figure *destinationFigure)
 {
-	return destinationFigure->getFigureY() - startFigure->getFigureY() == 1;
+	return destinationFigure->getY() - startFigure->getY() == 1;
 }
 
 bool Board::isValidMove(Square *start, Square *destination)

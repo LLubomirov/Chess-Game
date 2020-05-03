@@ -34,22 +34,22 @@ public:
 
     bool isHorizontalMove(int destinationX, int destinationY)
     {
-        return getFigureX() == destinationX && getFigureY() != destinationY;
+        return getX() == destinationX && getY() != destinationY;
     }
 
     bool isVerticalMove(int destinationX, int destinationY)
     {
-        return getFigureX() != destinationX && getFigureY() == destinationY;
+        return getX() != destinationX && getY() == destinationY;
     }
 
     bool isDiagonalMove(int destinationX, int destinationY)
     {
-        return abs(getFigureX() - destinationX) == abs(getFigureY() - destinationY);
+        return abs(getX() - destinationX) == abs(getY() - destinationY);
     }
 
     vector<pair<int, int>> generatePathHelper(int destinationX, int destinationY)
     {
-        int startX = this->getFigureX();
+        int startX = this->getX();
         vector<pair<int, int>> pathOfPairs;
         if(isStraightMove(destinationX, destinationY)) 
         {
@@ -80,7 +80,7 @@ public:
 
     vector<pair<int, int>> generateHorizontalPath(int destinationX, int destinationY)
     {
-        int startY = this->getFigureY();
+        int startY = this->getY();
         vector<pair<int, int>> pathOfPairs;
         int yIncrement = (destinationY - startY) / (abs(destinationY - startY));
         int currentY = startY;
@@ -96,7 +96,7 @@ public:
 
     vector<pair<int, int>> generateVerticalPath(int destinationX, int destinationY)
     {
-        int startX = this->getFigureX();
+        int startX = this->getX();
         vector<pair<int, int>> pathOfPairs;
         int xIncrement = (destinationX - startX) / (abs(destinationX - startX));
         int currentX = startX;
@@ -113,8 +113,8 @@ public:
     vector<pair<int, int>> generateDiagonalPath(int destinationX, int destinationY)
     {
         vector<pair<int, int>> pathOfPairs;
-        int startX = getFigureX();
-        int startY = getFigureY();
+        int startX = getX();
+        int startY = getY();
         int xIncrement = (destinationX - startX) / (abs(destinationX - startX));
         int yIncrement = (destinationY - startY) / (abs(destinationY - startY));
         int i = 0;

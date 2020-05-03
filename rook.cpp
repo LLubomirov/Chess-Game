@@ -29,12 +29,12 @@ public:
 
     bool isHorizontalMove(int destinationX, int destinationY)
     {
-        return getFigureX() == destinationX && getFigureY() != destinationY;
+        return getX() == destinationX && getY() != destinationY;
     }
 
     bool isVerticalMove(int destinationX, int destinationY)
     {
-        return getFigureX() != destinationX && getFigureY() == destinationY;
+        return getX() != destinationX && getY() == destinationY;
     }
 
     vector<pair<int, int>> generatePathHelper(int destinationX, int destinationY)
@@ -54,7 +54,7 @@ public:
 
     vector<pair<int, int>> generateHorizontalPath(int destinationX, int destinationY)
     {
-        int startY = this->getFigureY();
+        int startY = this->getY();
         vector<pair<int, int>> pathOfPairs;
         int yIncrement = (destinationY - startY) / (abs(destinationY - startY));
         int currentY = startY;
@@ -70,7 +70,7 @@ public:
 
     vector<pair<int, int>> generateVerticalPath(int destinationX, int destinationY)
     {
-        int startX = this->getFigureX();
+        int startX = this->getX();
         vector<pair<int, int>> pathOfPairs;
         int xIncrement = (destinationX - startX) / (abs(destinationX - startX));
         int currentX = startX;
