@@ -22,8 +22,13 @@ public:
         return path;
     }
 
-    bool isAccessible(int destinationX, int destinationY)
+    /// Handling diagonal attack move when validating input
+    bool isAccessible(int destinationX, int destinationY) 
     {
-        return (isWhite()) ? (getY() == destinationY - 1) : (getY() == destinationY + 1);
+        bool isHorizontal = (getX() == destinationX);
+        int newY = destinationY - getY();
+        bool validHorizontal = ((isWhite()) ? (newY == 1) : (newY == -1));
+
+        return isHorizontal && validHorizontal;
     }
 };
