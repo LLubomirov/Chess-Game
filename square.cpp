@@ -20,16 +20,6 @@ public:
         return this->figure;
     }
 
-    // int getX() const
-    // {
-    //     return this->figure->getX();
-    // }
-
-    // int getY() const
-    // {
-    //     return this->figure->getY();
-    // }
-
     FigureColor getColor() const
     {
         return this->getFigure()->getColor();
@@ -39,11 +29,6 @@ public:
     {
         return this->getFigure()->getType();
     }
-
-    // void setFigurePosition(int newX, int newY)
-    // {
-    //     this->figure->setPosition(newX, newY);
-    // }
 
     void setFigure(Figure *newFigure)
     {

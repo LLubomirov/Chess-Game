@@ -34,6 +34,7 @@ private:
 	void setDestination(Square*);
 	bool thereIsWinner();
 	void printBoard();
+	void performMove();
 	void readMove();
 	void validateMove();  
 	void moveFigure();

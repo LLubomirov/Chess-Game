@@ -23,9 +23,7 @@ void Board::playGame()
 	while(!thereIsWinner())
 	{
 		printBoard(); 
-		readMove();
-		validateMove();
-		moveFigure(); 
+		performMove();
 		switchPlayerTurn();
 	}
 
@@ -43,6 +41,7 @@ void Board::setBoard()
 	board[7][2].setFigure(new Bishop(BISHOP, WHITE));
 	board[7][1].setFigure(new Knight(KNIGHT, WHITE));
 	board[7][0].setFigure(new Rook  (ROOK,   WHITE));
+
 	board[0][7].setFigure(new Rook  (ROOK,   BLACK));
 	board[0][6].setFigure(new Knight(KNIGHT, BLACK));
 	board[0][5].setFigure(new Bishop(BISHOP, BLACK));
@@ -77,10 +76,9 @@ bool Board::thereIsWinner()
 void Board::printBoard() 
 {
 	// system("cls");
-	cout << "   y: 0  1  2  3  4  5  6  7 " << endl << "x:" << endl;
 	for (int i = 0; i < BOARD_ROWS; i++)
 	{
-		cout << " " << i << "   ";
+		cout << i << "  ";
 		for (int j = 0; j < BOARD_COLUMNS; j++)
 		{
 			cout << " ";
@@ -90,6 +88,7 @@ void Board::printBoard()
 		}
 		cout << endl;
 	}
+	cout << endl << "    A  B  C  D  E  F  G  H " << endl;
 
 	(turn == WHITE) ? cout << "White's turn" << endl : 
 		cout << "Black's turn" << endl;
@@ -97,14 +96,23 @@ void Board::printBoard()
 			
 }
 
+void Board::performMove()
+{
+	readMove();
+	validateMove();
+	moveFigure();
+}
+
 void Board::readMove()
 {
 	string move;
 	cin >> move;
-	int startX = charToInt(move[0]); 
-	int startY = charToInt(move[1]);
-	int destinationX = charToInt(move[2]);
-	int destinationY = charToInt(move[3]);
+	
+	int startX = move[1] - '0';
+	int startY = move[0] - 'A';
+	int destinationX = move[3] - '0';
+	int destinationY = move[2] - 'A';
+
 	
 	if(isSquareOnBoard(startX, startY) &&
 	   isSquareOnBoard(destinationX, destinationY))
@@ -116,7 +124,6 @@ void Board::readMove()
 	}
 	else
 	{	///fix this
-		cout << "Setting nullptr for start and destination" << endl;
 		setStart(nullptr);
 		setDestination(nullptr);
 	}
@@ -133,11 +140,14 @@ void Board::validateMove()
 
 void Board::moveFigure()
 {
-	lastTakenFigure = destination->getType();
+	if(destination->getType() != EMPTY)
+	{
+		lastTakenFigure = destination->getType();
+	}
 
 	destination->setFigure(start->getFigure());
-	EmptyFigure *emptyFig = new EmptyFigure(EMPTY, NONE);
-	start->setFigure(emptyFig);
+	EmptyFigure *emptyFigure = new EmptyFigure(EMPTY, NONE);
+	start->setFigure(emptyFigure);
 }
 
 int Board::charToInt(char input)
@@ -210,8 +220,6 @@ bool Board::figureOnTurn()
 {
 	bool isCorrectFigure = (start->getColor() == turn);
 
-	// cout << "Figure is : " << start->getColor() << " color " << endl;
-
 	if(!isCorrectFigure) 
 	{
 		cout << "You don't have figure there!" << endl;
@@ -272,8 +280,8 @@ bool Board::isRegularMove()
 	}
 
 	path.pop_back();
-
-	for(pair<int, int> &p : path)
+	
+	for(pair<int, int> &p : path) ///check if generated path doesn't go over actual figures
 	{
 		if(board[p.first][p.second].getType() != EMPTY)
 		{
