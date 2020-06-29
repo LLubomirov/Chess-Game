@@ -1,8 +1,8 @@
 class Knight : public Figure
 {
 public:
-    Knight(FigureType figureType, FigureColor figureColor, int figureX, int figureY) :
-        Figure(figureType, figureColor, figureX, figureY){}
+    Knight(FigureType figureType, FigureColor figureColor) :
+        Figure(figureType, figureColor){}
 
     char print()
     {
@@ -11,20 +11,20 @@ public:
         return knightSymbol;
     }
 
-    vector<pair<int, int>> generatePath(int destinationX, int destinationY)
+    vector<pair<int, int>> generatePath(pair<int, int> start, pair<int, int> destination)
     {
         vector<pair<int, int>> path;
-        if(isAccessible(destinationX, destinationY))
+        if(isAccessible(start, destination))
         {
-            path.push_back({destinationX, destinationY});
+            path.push_back(destination);
         }
         
         return path;
     }
 
-    bool isAccessible(int destinationX, int destinationY)
+    bool isAccessible(pair<int, int> start, pair<int, int> destination)
     {
-        return (abs(getX() - destinationX) == 2 && abs(getY() - destinationY) == 1) ||
-               (abs(getX() - destinationX) == 1 && abs(getY() - destinationY) == 2);
+        return (abs(start.first - destination.first) == 2 && abs(start.second - destination.second) == 1) ||
+               (abs(start.first - destination.first) == 1 && abs(start.second - destination.second) == 2);
     }
 };

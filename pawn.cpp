@@ -1,8 +1,8 @@
 class Pawn : public Figure
 {
 public:
-    Pawn(FigureType figureType, FigureColor figureColor, int figureX, int figureY) :
-        Figure(figureType, figureColor, figureX, figureY){}
+    Pawn(FigureType figureType, FigureColor figureColor) :
+        Figure(figureType, figureColor){}
 
     char print()
     {
@@ -11,22 +11,22 @@ public:
         return pawnSymbol;
     }
 
-    vector<pair<int, int>> generatePath(int destinationX, int destinationY)
+    vector<pair<int, int>> generatePath(pair<int, int> start, pair<int, int> destination)
     {
         vector<pair<int, int>> path;
-        if(isAccessible(destinationX, destinationY))
+        if(isAccessible(start, destination))
         {
-            path.push_back({destinationX, destinationY});
+            path.push_back(destination);
         }
         
         return path;
     }
 
     /// Handling diagonal attack move when validating input
-    bool isAccessible(int destinationX, int destinationY) 
+    bool isAccessible(pair<int, int> start, pair<int, int> destination) 
     {
-        bool isVertical = (getY() == destinationY);
-        int newX = destinationX - getX();
+        bool isVertical = (start.second == destination.second);
+        int newX = destination.first - start.first;
         bool validVertical = ((isWhite()) ? (newX == -1) : (newX == 1));
 
         return isVertical && validVertical;

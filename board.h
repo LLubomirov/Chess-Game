@@ -26,6 +26,8 @@ private:
 	FigureType lastTakenFigure = EMPTY; 
 	Square *start;
 	Square *destination;
+	pair<int, int> startCoords;
+	pair<int, int> destCoords;
 
 	void setBoard(); 
 	void setStart(Square*);

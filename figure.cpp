@@ -14,19 +14,15 @@ class Figure
 private:
     FigureType type;
     FigureColor color;
-    int x;
-    int y;
 
 public:
-    virtual vector<pair<int, int>> generatePath(int destinationX, int destinationY) = 0;
+    virtual vector<pair<int, int>> generatePath(pair<int, int>, pair<int, int>) = 0;
     virtual char print() = 0;
 
-    Figure(FigureType type, FigureColor color, int x, int y)
+    Figure(FigureType type, FigureColor color)
     {
         this->type = type;
         this->color = color;
-        this->x = x;
-        this->y = y;
     }
 
     bool isWhite() const
@@ -54,19 +50,19 @@ public:
         return this->type;
     }
 
-    int getX() const
-    {
-        return this->x;
-    }
+    // int getX() const
+    // {
+    //     return this->x;
+    // }
 
-    int getY() const
-    {
-        return this->y;
-    }
+    // int getY() const
+    // {
+    //     return this->y;
+    // }
 
-    void setPosition(int newX, int newY)
-    {
-        this->x = newX;
-        this->y = newY;
-    }
+    // void setPosition(int newX, int newY)
+    // {
+    //     this->x = newX;
+    //     this->y = newY;
+    // }
 };

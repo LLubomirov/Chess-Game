@@ -1,8 +1,8 @@
 class EmptyFigure : public Figure
 {
 public:
-    EmptyFigure(FigureType figureType, FigureColor figureColor, int figureX, int figureY) : 
-        Figure(figureType, figureColor, figureX, figureY){}
+    EmptyFigure(FigureType figureType, FigureColor figureColor) : 
+        Figure(figureType, figureColor){}
 
     char print()
     {
@@ -11,7 +11,7 @@ public:
         return emptySymbol;
     }
 
-    vector<pair<int, int>> generatePath(int destinationX, int destinationY)
+    vector<pair<int, int>> generatePath(pair<int, int> start, pair<int, int> destination)
     {
         vector<pair<int, int>> path;
         
