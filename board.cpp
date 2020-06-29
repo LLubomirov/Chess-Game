@@ -12,7 +12,7 @@ Board::Board()
 			this->board[i][j].setFigure(new EmptyFigure (EMPTY, NONE, i, j));
 		}
 	}
-
+	cout << "board[0][0]: [" << board[0][0].getX() << ", " << board[0][0].getY() << "]" << endl;
 	this->start = &board[0][0];
 	this->destination = &board[0][0];
 }
@@ -24,6 +24,11 @@ void Board::playGame()
 	{
 		printBoard(); 
 		readMove();
+
+		// cout << "playGame()\n";
+		// cout << "start=board[" << start->getX() << "][" << start->getY() << "]" << endl;
+		// cout << "dest =board[" << destination->getX() << "][" << destination->getY() << "]" << endl;
+
 		validateMove();
 		moveFigure(); 
 		switchPlayerTurn();
@@ -35,39 +40,45 @@ void Board::playGame()
 
 void Board::setBoard()
 {
-	board[0][0].setFigure(new Rook  (ROOK,   WHITE, 0, 0));
-	board[1][0].setFigure(new Knight(KNIGHT, WHITE, 1, 0));
-	board[2][0].setFigure(new Bishop(BISHOP, WHITE, 2, 0));
-	board[3][0].setFigure(new Queen (QUEEN,  WHITE, 3, 0));
-	board[4][0].setFigure(new King  (KING,   WHITE, 4, 0));
-	board[5][0].setFigure(new Bishop(BISHOP, WHITE, 5, 0));
-	board[6][0].setFigure(new Knight(KNIGHT, WHITE, 6, 0));
+	board[7][7].setFigure(new Rook  (ROOK,   WHITE, 7, 7));
+	board[7][6].setFigure(new Knight(KNIGHT, WHITE, 7, 6));
+	board[7][5].setFigure(new Bishop(BISHOP, WHITE, 7, 5));
+	board[7][4].setFigure(new Queen (QUEEN,  WHITE, 7, 4));
+	board[7][3].setFigure(new King  (KING,   WHITE, 7, 3));
+	board[7][2].setFigure(new Bishop(BISHOP, WHITE, 7, 2));
+	board[7][1].setFigure(new Knight(KNIGHT, WHITE, 7, 1));
 	board[7][0].setFigure(new Rook  (ROOK,   WHITE, 7, 0));
 
 	board[0][7].setFigure(new Rook  (ROOK,   BLACK, 0, 7));
-	board[1][7].setFigure(new Knight(KNIGHT, BLACK, 1, 7));
-	board[2][7].setFigure(new Bishop(BISHOP, BLACK, 2, 7));
-	board[3][7].setFigure(new Queen (QUEEN,  BLACK, 3, 7));
-	board[4][7].setFigure(new King  (KING,   BLACK, 4, 7));
-	board[5][7].setFigure(new Bishop(BISHOP, BLACK, 5, 7));
-	board[6][7].setFigure(new Knight(KNIGHT, BLACK, 6, 7));
-	board[7][7].setFigure(new Rook  (ROOK,   BLACK, 7, 7));
+	board[0][6].setFigure(new Knight(KNIGHT, BLACK, 0, 6));
+	board[0][5].setFigure(new Bishop(BISHOP, BLACK, 0, 5));
+	board[0][4].setFigure(new Queen (QUEEN,  BLACK, 0, 4));
+	board[0][3].setFigure(new King  (KING,   BLACK, 0, 3));
+	board[0][2].setFigure(new Bishop(BISHOP, BLACK, 0, 2));
+	board[0][1].setFigure(new Knight(KNIGHT, BLACK, 0, 1));
+	board[0][0].setFigure(new Rook  (ROOK,   BLACK, 0, 0));
 
-	for (int i = 0; i < 8; i++)
+	for (int i = 0; i < BOARD_COLUMNS; i++)
 	{
-		board[i][1].setFigure(new Pawn(PAWN, WHITE, i, 1));
-		board[i][6].setFigure(new Pawn(PAWN, BLACK, i, 6));
+		board[1][i].setFigure(new Pawn(PAWN, BLACK, 1, i));
+		board[6][i].setFigure(new Pawn(PAWN, WHITE, 6, i));
 	}
 }
 
 void Board::setStart(Square *start)
 {
+	// cout << "setStart()" << endl;
+	// cout << "start[" << _start->getX() << ", " << _start->getY() << "]" << endl;
 	this->start = start;
+	// cout << "start=board[" << start->getX() << ", " << start->getY() << "]" << endl;
 }
 
 void Board::setDestination(Square *destination)
 {
+	// cout << "setDestination()" << endl;
+	// cout << "dest[" << _destination->getX() << ", " << _destination->getY() << "]" << endl;
 	this->destination = destination;
+	// cout << "dest=board[" << destination->getX() << ", " << destination->getY() << "]" << endl;
 }
 
 bool Board::thereIsWinner()
@@ -77,7 +88,7 @@ bool Board::thereIsWinner()
 
 void Board::printBoard() 
 {
-	system("cls");
+	// system("cls");
 	cout << "   y: 0  1  2  3  4  5  6  7 " << endl << "x:" << endl;
 	for (int i = 0; i < BOARD_ROWS; i++)
 	{
@@ -110,11 +121,24 @@ void Board::readMove()
 	if(isSquareOnBoard(startX, startY) &&
 	   isSquareOnBoard(destinationX, destinationY))
 	{
+		// cout << " --------- \n";
+		// cout << "readMove()\n";
+		// cout << "start[" << startX << "][" << startY << "]" << endl;
+		// cout << "dest [" << destinationX << "][" << destinationY << "]" << endl;
+
+		// cout << "board[" << startX << "][" << startY << "]: [" << board[startX][startY].getX() << ", " << board[startX][startY].getY() << "]" << endl;
+		// cout << "board[" << destinationX << "][" << destinationY << "]: [" << board[destinationX][destinationY].getX() << ", " << board[destinationX][destinationY].getY() << "]" << endl;
+
 		setStart(&board[startX][startY]);
 		setDestination(&board[destinationX][destinationY]);
+
+		// cout << "start=board[" << start->getX() << "][" << start->getY() << "]" << endl;
+		// cout << "dest =board[" << destination->getX() << "][" << destination->getY() << "]" << endl;
+		// cout << " --------- \n";
 	}
 	else
-	{
+	{	///fix this
+		cout << "Setting nullptr for start and destination" << endl;
 		setStart(nullptr);
 		setDestination(nullptr);
 	}
@@ -152,10 +176,42 @@ int Board::charToInt(char input)
 
 bool Board::isValidMove()
 {
+	bool inBounds = inputInBounds();
+	bool figureTurn = figureOnTurn();
+	bool landable = canLand();
+	bool reachable = isReachable(); 
+
+	if(!inBounds)
+	{
+		cout << "Input is in bounds: " << boolalpha << inBounds << endl;
+	}
+
+	if(!figureTurn)
+	{
+		cout << "Figure is on turn :  " << boolalpha << figureTurn << endl;
+	}
+
+	if(!landable)
+	{
+		cout << "Square is landable:  " << boolalpha << landable   << endl;
+	}
+
+	if(!reachable)
+	{
+		cout << "Square is reachable: " << boolalpha << reachable  << endl;
+	}
+	
+	return inBounds &&
+			figureTurn &&
+			landable &&
+			reachable;
+
+	/*
 	return inputInBounds() &&
 		   figureOnTurn() &&
 		   canLand() &&
 		   isReachable(); 
+	*/
 }
 
 bool Board::inputInBounds()
@@ -182,6 +238,8 @@ bool Board::figureOnTurn()
 {
 	bool isCorrectFigure = (start->getColor() == turn);
 
+	cout << "Figure is : " << start->getColor() << " color " << endl;
+
 	if(!isCorrectFigure) 
 	{
 		cout << "You don't have figure there!" << endl;
@@ -193,6 +251,11 @@ bool Board::figureOnTurn()
 bool Board::canLand()
 {
 	bool validLand = (start->getColor() != destination->getColor());
+	// cout << "canLand()\n";
+	// cout << "Start_Square: coords=(" << start->getX() << ", " << start->getY() 
+	// 	 << ") color=" << start->getColor() << " type=" << start->getType() << endl;
+	// cout << "Dest_Square:  coords=(" << destination->getX() << ", " << destination->getY() 
+	// 	 << ") color=" << destination->getColor() << " type=" << destination->getType() << endl;
 
 	if(!validLand)
 	{
@@ -210,25 +273,25 @@ bool Board::isReachable()
 bool Board::isPawnAttack()
 {
 	bool isPawnMove = start->getType() == PAWN;
-	bool movesVertically = abs(start->getX() - destination->getX()) > 0;
+	bool movesOneHorizontally = abs(start->getY() - destination->getY()) == 1;
 
-	if(!(isPawnMove && movesVertically))
+	if(!(isPawnMove && movesOneHorizontally))
 	{
 		return false;
 	}
 
-	int yMovement = destination->getY() - start->getY();
+	int xMovement = destination->getX() - start->getX();
 
 	if(start->getColor() == WHITE)
 	{
 		return destination->getColor() == BLACK && 
-		       yMovement == 1;
+		       xMovement == -1;
 	}
 
 	else
 	{
 		return destination->getColor() == WHITE && 
-		       yMovement == -1;
+		       xMovement == 1;
 	}
 }
 

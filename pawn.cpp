@@ -25,10 +25,10 @@ public:
     /// Handling diagonal attack move when validating input
     bool isAccessible(int destinationX, int destinationY) 
     {
-        bool isHorizontal = (getX() == destinationX);
-        int newY = destinationY - getY();
-        bool validHorizontal = ((isWhite()) ? (newY == 1) : (newY == -1));
+        bool isVertical = (getY() == destinationY);
+        int newX = destinationX - getX();
+        bool validVertical = ((isWhite()) ? (newX == -1) : (newX == 1));
 
-        return isHorizontal && validHorizontal;
+        return isVertical && validVertical;
     }
 };
