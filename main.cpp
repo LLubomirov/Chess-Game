@@ -1,7 +1,14 @@
 #include "board.cpp"
 
+#define DOCTEST_CONFIG_IMPLEMENT
+#include "doctest.h"
+#include "test_setBoard.cpp"
+
 int main()
 {
+	doctest::Context().run();
+	return 0;
+	
 	cout << "   _____ _    _ ______  _____ _____ \n  / ____| |  | |  ____|/ ____/ ____| \n | |    | |__| | |__  | (___| (___  \n | |    |  __  |  __|  \\___  \\___ \\ \n | |____| |  | | |____ ____) |___) | \n  \\_____|_|  |_|______|_____/_____/ \n" << endl;
 	cout << "Enter any key to continue" << endl;
 	string pressAnyKey;

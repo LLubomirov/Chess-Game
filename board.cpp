@@ -36,8 +36,8 @@ void Board::setBoard()
 	board[7][7].setFigure(new Rook  (ROOK,   WHITE));
 	board[7][6].setFigure(new Knight(KNIGHT, WHITE));
 	board[7][5].setFigure(new Bishop(BISHOP, WHITE));
-	board[7][4].setFigure(new Queen (QUEEN,  WHITE));
-	board[7][3].setFigure(new King  (KING,   WHITE));
+	board[7][4].setFigure(new King  (KING,   WHITE));
+	board[7][3].setFigure(new Queen (QUEEN,  WHITE));
 	board[7][2].setFigure(new Bishop(BISHOP, WHITE));
 	board[7][1].setFigure(new Knight(KNIGHT, WHITE));
 	board[7][0].setFigure(new Rook  (ROOK,   WHITE));
@@ -45,8 +45,8 @@ void Board::setBoard()
 	board[0][7].setFigure(new Rook  (ROOK,   BLACK));
 	board[0][6].setFigure(new Knight(KNIGHT, BLACK));
 	board[0][5].setFigure(new Bishop(BISHOP, BLACK));
-	board[0][4].setFigure(new Queen (QUEEN,  BLACK));
-	board[0][3].setFigure(new King  (KING,   BLACK));
+	board[0][4].setFigure(new King  (KING,   BLACK));
+	board[0][3].setFigure(new Queen (QUEEN,  BLACK));
 	board[0][2].setFigure(new Bishop(BISHOP, BLACK));
 	board[0][1].setFigure(new Knight(KNIGHT, BLACK));
 	board[0][0].setFigure(new Rook  (ROOK,   BLACK));
@@ -75,10 +75,10 @@ bool Board::thereIsWinner()
 
 void Board::printBoard() 
 {
-	// system("cls");
+	system("cls");
 	for (int i = 0; i < BOARD_ROWS; i++)
 	{
-		cout << i << "  ";
+		cout << 8 - i << "  ";
 		for (int j = 0; j < BOARD_COLUMNS; j++)
 		{
 			cout << " ";
@@ -108,11 +108,12 @@ void Board::readMove()
 	string move;
 	cin >> move;
 	
-	int startX = move[1] - '0';
+	int startX = '8' - move[1];
 	int startY = move[0] - 'A';
-	int destinationX = move[3] - '0';
+	int destinationX = '8' - move[3];
 	int destinationY = move[2] - 'A';
 
+	cout << "[" << startX << " " << startY << "] [" << destinationX << " " << destinationY << "]" << endl;
 	
 	if(isSquareOnBoard(startX, startY) &&
 	   isSquareOnBoard(destinationX, destinationY))

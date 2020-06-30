@@ -20,7 +20,7 @@ public:
 	void playGame();
 	Board();
 
-private:
+protected:
 	Square board[BOARD_ROWS][BOARD_COLUMNS];
 	FigureColor turn = WHITE;
 	FigureType lastTakenFigure = EMPTY; 
