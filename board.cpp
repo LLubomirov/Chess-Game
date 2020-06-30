@@ -9,12 +9,9 @@ Board::Board()
 	{
 		for(int j = 0; j < BOARD_COLUMNS; ++j)
 		{
-			this->board[i][j].setFigure(new EmptyFigure (EMPTY, NONE));
+			setFigureOn(new EmptyFigure (EMPTY, NONE), {i, j});
 		}
 	}
-	
-	this->start = &board[0][0];
-	this->destination = &board[0][0];
 }
 
 void Board::playGame()
@@ -31,42 +28,64 @@ void Board::playGame()
 	(turn == WHITE) ? cout << "WHITE WINS\n" : cout << "BLACK WINS\n";
 }
 
+Square Board::getSquare(pair<int, int> position)
+{
+	///throw exception if invalid position
+	return this->board[position.first][position.second];
+}
+
+FigureColor Board::getColor(pair<int, int> position)
+{
+	return this->board[position.first][position.second].getColor();
+}
+
+FigureType Board::getType(pair<int, int> position)
+{
+	return this->board[position.first][position.second].getType();
+}
+
 void Board::setBoard()
 {
-	board[7][7].setFigure(new Rook  (ROOK,   WHITE));
-	board[7][6].setFigure(new Knight(KNIGHT, WHITE));
-	board[7][5].setFigure(new Bishop(BISHOP, WHITE));
-	board[7][4].setFigure(new King  (KING,   WHITE));
-	board[7][3].setFigure(new Queen (QUEEN,  WHITE));
-	board[7][2].setFigure(new Bishop(BISHOP, WHITE));
-	board[7][1].setFigure(new Knight(KNIGHT, WHITE));
-	board[7][0].setFigure(new Rook  (ROOK,   WHITE));
+	setFigureOn(new Rook  (ROOK,   WHITE), {7, 7});
+	setFigureOn(new Knight(KNIGHT, WHITE), {7, 6});
+	setFigureOn(new Bishop(BISHOP, WHITE), {7, 5});
+	setFigureOn(new King  (KING,   WHITE), {7, 4});
+	setFigureOn(new Queen (QUEEN,  WHITE), {7, 3});
+	setFigureOn(new Bishop(BISHOP, WHITE), {7, 2});
+	setFigureOn(new Knight(KNIGHT, WHITE), {7, 1});
+	setFigureOn(new Rook  (ROOK,   WHITE), {7, 0});
 
-	board[0][7].setFigure(new Rook  (ROOK,   BLACK));
-	board[0][6].setFigure(new Knight(KNIGHT, BLACK));
-	board[0][5].setFigure(new Bishop(BISHOP, BLACK));
-	board[0][4].setFigure(new King  (KING,   BLACK));
-	board[0][3].setFigure(new Queen (QUEEN,  BLACK));
-	board[0][2].setFigure(new Bishop(BISHOP, BLACK));
-	board[0][1].setFigure(new Knight(KNIGHT, BLACK));
-	board[0][0].setFigure(new Rook  (ROOK,   BLACK));
+	setFigureOn(new Rook  (ROOK,   BLACK), {0, 7});
+	setFigureOn(new Knight(KNIGHT, BLACK), {0, 6});
+	setFigureOn(new Bishop(BISHOP, BLACK), {0, 5});
+	setFigureOn(new King  (KING,   BLACK), {0, 4});
+	setFigureOn(new Queen (QUEEN,  BLACK), {0, 3});
+	setFigureOn(new Bishop(BISHOP, BLACK), {0, 2});
+	setFigureOn(new Knight(KNIGHT, BLACK), {0, 1});
+	setFigureOn(new Rook  (ROOK,   BLACK), {0, 0});
 
 	for (int i = 0; i < BOARD_COLUMNS; i++)
 	{
-		board[1][i].setFigure(new Pawn(PAWN, BLACK));
-		board[6][i].setFigure(new Pawn(PAWN, WHITE));
+		setFigureOn(new Pawn(PAWN, BLACK), {1, i});
+		setFigureOn(new Pawn(PAWN, WHITE), {6, i});
 	}
 }
 
-void Board::setStart(Square *start)
+void Board::setFigureOn(Figure *figure, pair<int, int> position)
 {
-	this->start = start;
+	this->board[position.first][position.second].setFigure(figure);
 }
 
-void Board::setDestination(Square *destination)
-{
-	this->destination = destination;
-}
+
+// void Board::setStart(Square *start)
+// {
+// 	this->start = start;
+// }
+
+// void Board::setDestination(Square *destination)
+// {
+// 	this->destination = destination;
+// }
 
 bool Board::thereIsWinner()
 {
@@ -75,7 +94,7 @@ bool Board::thereIsWinner()
 
 void Board::printBoard() 
 {
-	system("cls");
+	// system("cls");
 	for (int i = 0; i < BOARD_ROWS; i++)
 	{
 		cout << 8 - i << "  ";
@@ -92,15 +111,30 @@ void Board::printBoard()
 
 	(turn == WHITE) ? cout << "White's turn" << endl : 
 		cout << "Black's turn" << endl;
-		cout << "Type in your move as a single four character string. Use x-coordinates first in each pair." << endl;
+		cout << "Type in your move as a single four character string. Use column index followed by row index in each pair." << endl;
 			
 }
 
 void Board::performMove()
 {
 	readMove();
-	validateMove();
-	moveFigure();
+	bool validMove = false;
+	try
+    {
+		validMove = isValidMove();
+    }
+    catch (invalid_argument &e)
+    {
+        cout << e.what() << endl;
+		performMove();
+
+		return;
+    }
+	
+	if(validMove)
+	{
+		moveFigure();
+	}
 }
 
 void Board::readMove()
@@ -112,43 +146,22 @@ void Board::readMove()
 	int startY = move[0] - 'A';
 	int destinationX = '8' - move[3];
 	int destinationY = move[2] - 'A';
-
-	cout << "[" << startX << " " << startY << "] [" << destinationX << " " << destinationY << "]" << endl;
-	
-	if(isSquareOnBoard(startX, startY) &&
-	   isSquareOnBoard(destinationX, destinationY))
-	{
-		setStart(&board[startX][startY]);
-		setDestination(&board[destinationX][destinationY]);
-		this->startCoords = {startX, startY};
-		this->destCoords = {destinationX, destinationY};
-	}
-	else
-	{	///fix this
-		setStart(nullptr);
-		setDestination(nullptr);
-	}
-}
-
-void Board::validateMove() 
-{
-	while(!isValidMove())
-	{
-		cout << "Try again" << endl;
-		readMove();
-	}
+	this->startCoords = {startX, startY};
+	this->destCoords = {destinationX, destinationY};
 }
 
 void Board::moveFigure()
 {
-	if(destination->getType() != EMPTY)
+	if(getSquare(destCoords).getType() != EMPTY)
 	{
-		lastTakenFigure = destination->getType();
+		lastTakenFigure = getType(destCoords);
 	}
 
-	destination->setFigure(start->getFigure());
+	Figure *newFigure = getSquare(startCoords).getFigure();
+	setFigureOn(newFigure, destCoords);
+	
 	EmptyFigure *emptyFigure = new EmptyFigure(EMPTY, NONE);
-	start->setFigure(emptyFigure);
+	setFigureOn(emptyFigure, startCoords);
 }
 
 int Board::charToInt(char input)
@@ -159,54 +172,45 @@ int Board::charToInt(char input)
 
 bool Board::isValidMove()
 {
-	bool inBounds = inputInBounds();
-	bool figureTurn = figureOnTurn();
-	bool landable = canLand();
-	bool reachable = isReachable(); 
-
-	if(!inBounds)
+	if(!inputInBounds())
 	{
-		cout << "Input is in bounds: " << boolalpha << inBounds << endl;
+		throw invalid_argument("Input is out of bounds");
 	}
 
-	if(!figureTurn)
+	if(!figureOnTurn())
 	{
-		cout << "Figure is on turn :  " << boolalpha << figureTurn << endl;
+		throw invalid_argument("You can move only the figures in your possession");
 	}
 
-	if(!landable)
+	if(!canLandOn())
 	{
-		cout << "Square is landable:  " << boolalpha << landable   << endl;
+		throw invalid_argument("You cannot land on your own figure");
 	}
 
-	if(!reachable)
+	if(!isReachable())
 	{
-		cout << "Square is reachable: " << boolalpha << reachable  << endl;
+		throw invalid_argument("You cannot land there, something is blocking your path");
 	}
 	
-	return inBounds &&
-			figureTurn &&
-			landable &&
-			reachable;
-
-	/*
-	return inputInBounds() &&
-		   figureOnTurn() &&
-		   canLand() &&
-		   isReachable(); 
-	*/
+	return true;
 }
 
 bool Board::inputInBounds()
 {
-	bool inBounds = (start != nullptr && destination != nullptr);
+	bool startIsValid = startCoords.first >= 0 && startCoords.first <= 7 &&
+						startCoords.second >= 0 && startCoords.second <= 7;
 
-	if(!inBounds)
-	{
-		cout << "Your input is out of bounds!" << endl;
-	}
+	bool destIsValid = destCoords.first >= 0 && destCoords.first <= 7 &&
+						destCoords.second >= 0 && destCoords.second <= 7;
+	// bool inBounds = (start != nullptr && destination != nullptr);
 
-	return inBounds;
+	// if(!inBounds)
+	// {
+	// 	cout << "Your input is out of bounds!" << endl;
+	// }
+	// cout << "Is in bound: " << boolalpha << (startIsValid && destIsValid) << endl;
+
+	return startIsValid && destIsValid;
 }
 
 bool Board::isSquareOnBoard(int x, int y)
@@ -219,24 +223,26 @@ bool Board::isSquareOnBoard(int x, int y)
 
 bool Board::figureOnTurn()
 {
-	bool isCorrectFigure = (start->getColor() == turn);
+	bool isCorrectFigure = (getColor(startCoords) == turn);
 
-	if(!isCorrectFigure) 
-	{
-		cout << "You don't have figure there!" << endl;
-	}
+	// cout << getSquare(startCoords).getColor() << " == " << turn << endl;
+	// if(!isCorrectFigure) 
+	// {
+	// 	cout << "You don't have figure there!" << endl;
+	// }
+	// cout << "figureOnTurn(): " << boolalpha << isCorrectFigure << endl;
 
 	return isCorrectFigure;
 }
 
-bool Board::canLand()
+bool Board::canLandOn()
 {
-	bool validLand = (start->getColor() != destination->getColor());
+	bool validLand = (turn != getColor(destCoords));
 
-	if(!validLand)
-	{
-		cout << "You can't land on your own figure!" << endl;
-	}
+	// if(!validLand)
+	// {
+	// 	cout << "You can't land on your own figure!" << endl;
+	// }
 
 	return validLand;
 }
@@ -248,7 +254,7 @@ bool Board::isReachable()
 
 bool Board::isPawnAttack()
 {
-	bool isPawnMove = start->getType() == PAWN;
+	bool isPawnMove = getType(startCoords) == PAWN;
 	bool movesOneHorizontally = abs(startCoords.second - destCoords.second) == 1;
 
 	if(!(isPawnMove && movesOneHorizontally))
@@ -258,15 +264,15 @@ bool Board::isPawnAttack()
 
 	int xMovement = destCoords.first - startCoords.first;
 
-	if(start->getColor() == WHITE)
+	if(getColor(startCoords) == WHITE)
 	{
-		return destination->getColor() == BLACK && 
+		return getColor(destCoords) == BLACK && 
 		       xMovement == -1;
 	}
 
 	else
 	{
-		return destination->getColor() == WHITE && 
+		return getColor(destCoords) == WHITE && 
 		       xMovement == 1;
 	}
 }
@@ -282,9 +288,9 @@ bool Board::isRegularMove()
 
 	path.pop_back();
 	
-	for(pair<int, int> &p : path) ///check if generated path doesn't go over actual figures
+	for(pair<int, int>& position : path) ///check if generated path doesn't go over actual figures
 	{
-		if(board[p.first][p.second].getType() != EMPTY)
+		if(getType(position) != EMPTY)
 		{
 			return false;
 		}
@@ -292,7 +298,7 @@ bool Board::isRegularMove()
 
 	if(isPawnHorizontal())
 	{
-		bool stepOnEmpty = destination->getType() == EMPTY;
+		bool stepOnEmpty = getType(destCoords) == EMPTY;
 
 		return stepOnEmpty;
 	}
@@ -302,7 +308,7 @@ bool Board::isRegularMove()
 
 bool Board::isPawnHorizontal()
 {	
-	bool isPawn = start->getType() == PAWN;
+	bool isPawn = getType(startCoords) == PAWN;
 	bool isHorizontal = (startCoords.first == destCoords.first);
 
 	return isPawn && isHorizontal;
@@ -310,7 +316,7 @@ bool Board::isPawnHorizontal()
 
 vector<pair<int, int>> Board::generatePath()
 {
-	Figure* startFigure = start->getFigure();
+	Figure* startFigure = getSquare(startCoords).getFigure();
 
 	vector<pair<int, int>> path = startFigure->generatePath(startCoords, destCoords);
 
