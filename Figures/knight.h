@@ -1,3 +1,6 @@
+#ifndef __KNIGHT_H
+#define __KNIGHT_H
+
 class Knight : public Figure
 {
 public:
@@ -9,3 +12,5 @@ public:
 };
 
 #include "knight.cpp"
+
+#endif

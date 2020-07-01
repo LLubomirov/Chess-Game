@@ -1,3 +1,6 @@
+#ifndef __ROOK_H
+#define __ROOK_H
+
 class Rook : public Figure
 {
 public:
@@ -13,3 +16,5 @@ public:
 };
 
 #include "rook.cpp"
+
+#endif

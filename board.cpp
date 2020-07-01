@@ -80,11 +80,3 @@ void Board::printBoard()
 	}
 	cout << endl << "    A  B  C  D  E  F  G  H " << endl;
 }
-
-bool Board::isSquareOnBoard(int x, int y)
-{
-	return  x >= 0 && 
-			x < BOARD_ROWS &&
-			y >= 0 && 
-			y < BOARD_COLUMNS;
-}

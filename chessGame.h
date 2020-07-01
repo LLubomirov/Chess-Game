@@ -1,3 +1,6 @@
+#ifndef __CHESS_GAME_H
+#define __CHESS_GAME_H
+
 #include "board.cpp"
 
 class ChessGame : public Board
@@ -32,3 +35,5 @@ protected:
 };
 
 #include "chessGame.cpp"
+
+#endif

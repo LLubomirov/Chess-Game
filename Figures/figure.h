@@ -1,3 +1,6 @@
+#ifndef __FIGURE_H_
+#define __FIGURE_H_
+
 #include <string>
 #include <iostream>
 #include <vector>
@@ -27,3 +30,5 @@ public:
 };
 
 #include "figure.cpp"
+
+#endif

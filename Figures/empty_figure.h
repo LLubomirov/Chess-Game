@@ -1,3 +1,6 @@
+#ifndef __EMPTY_FIGURE_H
+#define __EMPTY_FIGURE_H
+
 class EmptyFigure : public Figure
 {
 public:
@@ -8,3 +11,5 @@ public:
 };
 
 #include "empty_figure.cpp"
+
+#endif

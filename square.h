@@ -1,3 +1,6 @@
+#ifndef __SQUARE_H
+#define __SQUARE_H
+
 #include "./Figures/figure.h"
 
 class Square
@@ -16,3 +19,5 @@ private:
 };
 
 #include "square.cpp"
+
+#endif

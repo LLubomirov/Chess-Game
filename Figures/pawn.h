@@ -1,3 +1,6 @@
+#ifndef __PAWN_H
+#define __PAWN_H
+
 class Pawn : public Figure
 {
 public:
@@ -9,3 +12,5 @@ public:
 };
 
 #include "pawn.cpp"
+
+#endif 

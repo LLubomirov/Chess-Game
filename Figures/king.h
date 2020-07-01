@@ -1,3 +1,6 @@
+#ifndef __KING_H
+#define __KING_H
+
 class King : public Figure
 {
 public:
@@ -13,3 +16,5 @@ public:
 };
 
 #include "king.cpp"
+
+#endif 

@@ -1,3 +1,6 @@
+#ifndef __BISHOP_H_
+#define __BISHOP_H
+
 class Bishop : public Figure
 {
 public:
@@ -10,3 +13,5 @@ public:
 };
 
 #include "bishop.cpp"
+
+#endif

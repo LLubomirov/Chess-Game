@@ -1,3 +1,6 @@
+#ifndef __QUEEN_H
+#define __QUEEN_H
+
 class Queen : public Figure
 {
 public:
@@ -18,3 +21,5 @@ public:
 };
 
 #include "queen.cpp"
+
+#endif
