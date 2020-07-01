@@ -1,52 +1,30 @@
-#include <string>
-#include <iostream>
-#include <vector>
-#include <cmath>
-using namespace std;
-
-enum FigureColor { NONE, WHITE, BLACK };
-enum FigureType { EMPTY, KING, QUEEN, BISHOP, KNIGHT, ROOK, PAWN };
-
-class Square;
-
-class Figure 
+Figure::Figure(FigureType type, FigureColor color)
 {
-private:
-    FigureType type;
-    FigureColor color;
+    this->type = type;
+    this->color = color;
+}
 
-public:
-    virtual vector<pair<int, int>> generatePath(pair<int, int>, pair<int, int>) = 0;
-    virtual char print() = 0;
+bool Figure::isWhite() const
+{
+    return this->color == WHITE;
+}
 
-    Figure(FigureType type, FigureColor color)
-    {
-        this->type = type;
-        this->color = color;
-    }
+bool Figure::isBlack() const
+{
+    return this->color == BLACK;
+}
 
-    bool isWhite() const
-    {
-        return this->color == WHITE;
-    }
+bool Figure::isEmpty() const
+{
+    return this->color == NONE;
+}
 
-    bool isBlack() const
-    {
-        return this->color == BLACK;
-    }
-    
-    bool isEmpty() const
-    {
-        return this->color == NONE;
-    }
+FigureColor Figure::getColor() const
+{
+    return this->color;
+}
 
-    FigureColor getColor() const
-    {
-        return this->color;
-    }
-
-    FigureType getType() const
-    {
-        return this->type;
-    }
-};
+FigureType Figure::getType() const
+{
+    return this->type;
+}

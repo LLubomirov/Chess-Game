@@ -1,4 +1,4 @@
-#include "figure.cpp"
+#include "./Figures/figure.h"
 
 class Square
 {

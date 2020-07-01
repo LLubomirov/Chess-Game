@@ -1,11 +1,11 @@
 #include "square.cpp"
-#include "king.cpp"
-#include "queen.cpp"
-#include "bishop.cpp"
-#include "rook.cpp"
-#include "knight.cpp"
-#include "pawn.cpp"
-#include "empty_figure.cpp"
+#include "./Figures/king.h"
+#include "./Figures/queen.h"
+#include "./Figures/bishop.h"
+#include "./Figures/rook.h"
+#include "./Figures/knight.h"
+#include "./Figures/pawn.h"
+#include "./Figures/empty_figure.h"
 
 #ifndef __BOARD_H
 #define __BOARD_H

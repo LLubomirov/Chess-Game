@@ -1,47 +1,43 @@
-class Bishop : public Figure
+Bishop::Bishop(FigureType figureType, FigureColor figureColor) :
+    Figure(figureType, figureColor){}
+
+char Bishop::print()
 {
-public:
-    Bishop(FigureType figureType, FigureColor figureColor) :
-        Figure(figureType, figureColor){}
+    char bishopSymbol = (isWhite()) ? 'B' : 'b';
 
-    char print()
+    return bishopSymbol;
+}
+
+vector<pair<int, int>> Bishop::generatePath(pair<int, int> start, pair<int, int> destination)
+{
+    vector<pair<int, int>> path;
+    if(isAccessible(start, destination))
     {
-        char bishopSymbol = (isWhite()) ? 'B' : 'b';
-
-        return bishopSymbol;
+        path = generatePathHelper(start, destination);
     }
+    
+    return path;
+}
 
-    vector<pair<int, int>> generatePath(pair<int, int> start, pair<int, int> destination)
+bool Bishop::isAccessible(pair<int, int> start, pair<int, int> destination)
+{
+    return abs(start.first - destination.first) == abs(start.second - destination.second);
+}
+
+vector<pair<int, int>> Bishop::generatePathHelper(pair<int, int> start, pair<int, int> destination)
+{
+    vector<pair<int, int>> path;
+    int startX = start.first;
+    int startY = start.second;
+    int xIncrement = (destination.first - startX) / (abs(destination.first - startX));
+    int yIncrement = (destination.second - startY) / (abs(destination.second - startY));
+    int i = 0;
+    do
     {
-        vector<pair<int, int>> path;
-        if(isAccessible(start, destination))
-        {
-            path = generatePathHelper(start, destination);
-        }
-        
-        return path;
+        i++;
+        path.push_back({startX + xIncrement*i, startY + yIncrement*i});
     }
+    while(i < abs(startX - destination.first));
 
-    bool isAccessible(pair<int, int> start, pair<int, int> destination)
-    {
-        return abs(start.first - destination.first) == abs(start.second - destination.second);
-    }
-
-    vector<pair<int, int>> generatePathHelper(pair<int, int> start, pair<int, int> destination)
-    {
-        vector<pair<int, int>> path;
-        int startX = start.first;
-        int startY = start.second;
-        int xIncrement = (destination.first - startX) / (abs(destination.first - startX));
-        int yIncrement = (destination.second - startY) / (abs(destination.second - startY));
-        int i = 0;
-        do
-        {
-            i++;
-            path.push_back({startX + xIncrement*i, startY + yIncrement*i});
-        }
-        while(i < abs(startX - destination.first));
-
-        return path;
-    }
-};
+    return path;
+}
