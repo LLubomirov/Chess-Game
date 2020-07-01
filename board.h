@@ -1,4 +1,4 @@
-#include "square.cpp"
+#include "square.h"
 #include "./Figures/king.h"
 #include "./Figures/queen.h"
 #include "./Figures/bishop.h"

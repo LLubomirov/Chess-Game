@@ -1,40 +1,30 @@
-#include "./Figures/figure.h"
-
-class Square
+Square::Square()
 {
-public:
+    Figure *figure;
+    this->figure = figure;
+}
 
-    Square()
-    {
-        Figure *figure;
-        this->figure = figure;
-    }
+Square::Square(Figure *figure)
+{
+    this->figure = figure;
+}
 
-    Square(Figure *figure)
-    {
-        this->figure = figure;
-    }
+Figure* Square::getFigure() const
+{
+    return this->figure;
+}
 
-    Figure *getFigure() const
-    {
-        return this->figure;
-    }
+FigureColor Square::getColor() const
+{
+    return this->getFigure()->getColor();
+}
 
-    FigureColor getColor() const
-    {
-        return this->getFigure()->getColor();
-    }
+FigureType Square::getType() const
+{
+    return this->getFigure()->getType();
+}
 
-    FigureType getType() const
-    {
-        return this->getFigure()->getType();
-    }
-
-    void setFigure(Figure *newFigure)
-    {
-        this->figure = newFigure;
-    }
-
-private:
-    Figure* figure;
-};
+void Square::setFigure(Figure *newFigure)
+{
+    this->figure = newFigure;
+}
