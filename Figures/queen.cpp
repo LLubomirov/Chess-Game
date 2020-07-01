@@ -19,32 +19,32 @@ vector<pair<int, int>> Queen::generatePath(pair<int, int> start, pair<int, int> 
     return path;
 }
 
-bool Queen::isAccessible(pair<int, int> start, pair<int, int> destination)
+bool Queen::isAccessible(pair<int, int> start, pair<int, int> destination) const
 {
     return(isStraightMove(start, destination) || isDiagonalMove(start, destination));
 }
 
-bool Queen::isStraightMove(pair<int, int> start, pair<int, int> destination)
+bool Queen::isStraightMove(pair<int, int> start, pair<int, int> destination) const
 {
     return isHorizontalMove(start, destination) || isVerticalMove(start, destination);
 }
 
-bool Queen::isHorizontalMove(pair<int, int> start, pair<int, int> destination)
+bool Queen::isHorizontalMove(pair<int, int> start, pair<int, int> destination) const
 {
     return start.first == destination.first && start.second != destination.second;
 }
 
-bool Queen::isVerticalMove(pair<int, int> start, pair<int, int> destination)
+bool Queen::isVerticalMove(pair<int, int> start, pair<int, int> destination) const
 {
     return start.first != destination.first && start.second == destination.second;
 }
 
-bool Queen::isDiagonalMove(pair<int, int> start, pair<int, int> destination)
+bool Queen::isDiagonalMove(pair<int, int> start, pair<int, int> destination) const
 {
     return abs(start.first - destination.first) == abs(start.second - destination.second);
 }
 
-vector<pair<int, int>> Queen::generatePathHelper(pair<int, int> start, pair<int, int> destination)
+vector<pair<int, int>> Queen::generatePathHelper(pair<int, int> start, pair<int, int> destination) const
 {
     vector<pair<int, int>> path;
 
@@ -60,7 +60,7 @@ vector<pair<int, int>> Queen::generatePathHelper(pair<int, int> start, pair<int,
     return path;
 }
 
-vector<pair<int, int>> Queen::generateStraightPath(pair<int, int> start, pair<int, int> destination)
+vector<pair<int, int>> Queen::generateStraightPath(pair<int, int> start, pair<int, int> destination) const
 {
     vector<pair<int, int>> path;
 
@@ -75,7 +75,7 @@ vector<pair<int, int>> Queen::generateStraightPath(pair<int, int> start, pair<in
     return path;
 }
 
-vector<pair<int, int>> Queen::generateHorizontalPath(pair<int, int> start, pair<int, int> destination)
+vector<pair<int, int>> Queen::generateHorizontalPath(pair<int, int> start, pair<int, int> destination) const
 {
     vector<pair<int, int>> path;
 
@@ -93,7 +93,7 @@ vector<pair<int, int>> Queen::generateHorizontalPath(pair<int, int> start, pair<
     return path;
 }
 
-vector<pair<int, int>> Queen::generateVerticalPath(pair<int, int> start, pair<int, int> destination)
+vector<pair<int, int>> Queen::generateVerticalPath(pair<int, int> start, pair<int, int> destination) const
 {
     vector<pair<int, int>> path;
 
@@ -111,14 +111,13 @@ vector<pair<int, int>> Queen::generateVerticalPath(pair<int, int> start, pair<in
     return path;
 }
 
-vector<pair<int, int>> Queen::generateDiagonalPath(pair<int, int> start, pair<int, int> destination)
+vector<pair<int, int>> Queen::generateDiagonalPath(pair<int, int> start, pair<int, int> destination) const
 {
     vector<pair<int, int>> path;
 
     int rowIncrement = destination.first - start.first;
     int columnIncrement = destination.second - start.second;
 
-    // sign on the direction (vertical/horizontal)
     int directionOnRow = rowIncrement / (abs(rowIncrement));
     int directionOnColumn = columnIncrement / (abs(columnIncrement));
     

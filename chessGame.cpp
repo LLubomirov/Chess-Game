@@ -1,36 +1,3 @@
-#include "board.cpp"
-
-class ChessGame : public Board
-{
-public:
-    ChessGame();
-    void play();
-
-protected:
-    Board board;
-    FigureType lastTakenFigure = EMPTY;
-    FigureColor turn = WHITE;
-    pair<int, int> start;
-    pair<int, int> destination;
-    
-    void playOneChessGame();
-    void setChessGame();
-    bool thereIsWinner();
-    void performMove();
-    void readMove();
-    bool isValidMove();
-    bool inputInBounds();
-    bool isSquareOnBoard(int x, int y);
-    bool figureOnTurn();
-    bool landEmptyOrEnemy();
-    bool isReachable();
-    bool isValidPawnAttack();
-    std::vector<std::pair<int, int>> generateMovePath();
-    void moveFigure();
-    void switchTurn();
-    void announceWinner();
-};
-
 ChessGame::ChessGame()
 {
     this->board = Board();
@@ -81,6 +48,7 @@ void ChessGame::playOneChessGame()
         switchTurn();
     }
 
+    switchTurn(); // switching the turn again because last turn wasn't playable and so we need to determine
     announceWinner();
 }
 
@@ -90,7 +58,7 @@ void ChessGame::setChessGame()
     turn = WHITE;
 }
 
-bool ChessGame::thereIsWinner()
+bool ChessGame::thereIsWinner() const
 {
     return lastTakenFigure == KING;
 }
@@ -130,7 +98,7 @@ void ChessGame::readMove()
     this->destination = {destinationRow, destinationColumn};
 }
 
-bool ChessGame::isValidMove()
+bool ChessGame::isValidMove() const
 {
     if(!inputInBounds())
     {
@@ -155,7 +123,7 @@ bool ChessGame::isValidMove()
     return true;
 }
 
-bool ChessGame::inputInBounds()
+bool ChessGame::inputInBounds() const
 {
     bool startIsValid = isSquareOnBoard(start.first, start.second);
     bool destIsValid = isSquareOnBoard(destination.first, destination.second);
@@ -163,7 +131,7 @@ bool ChessGame::inputInBounds()
     return startIsValid && destIsValid;
 }
 
-bool ChessGame::isSquareOnBoard(int x, int y)
+bool ChessGame::isSquareOnBoard(int x, int y) const
 {
     return  x >= 0 && 
             x < BOARD_ROWS &&
@@ -171,21 +139,21 @@ bool ChessGame::isSquareOnBoard(int x, int y)
             y < BOARD_COLUMNS;
 }
 
-bool ChessGame::figureOnTurn()
+bool ChessGame::figureOnTurn() const
 {
     bool isCorrectFigure = (board.getColor(start) == turn);
 
     return isCorrectFigure;
 }
 
-bool ChessGame::landEmptyOrEnemy()
+bool ChessGame::landEmptyOrEnemy() const
 {
     bool validLand = (turn != board.getColor(destination));
 
     return validLand;
 }
 
-bool ChessGame::isReachable()
+bool ChessGame::isReachable() const
 {
     if(board.getType(start) == PAWN && start.second - destination.second != 0)
     {
@@ -211,7 +179,7 @@ bool ChessGame::isReachable()
     return true;
 }
 
-bool ChessGame::isValidPawnAttack()
+bool ChessGame::isValidPawnAttack() const
 {
     bool movesOneHorizontally = abs(start.second - destination.second) == 1;
     if(!(movesOneHorizontally))
@@ -230,7 +198,7 @@ bool ChessGame::isValidPawnAttack()
     }
 }
 
-vector<pair<int, int>> ChessGame::generateMovePath()
+vector<pair<int, int>> ChessGame::generateMovePath() const
 {
     Figure *figure = board.getFigure(start);
     vector<pair<int, int>> movePath = figure->generatePath(start, destination);
@@ -265,9 +233,8 @@ void ChessGame::switchTurn()
     }
 }
 
-void ChessGame::announceWinner()
+void ChessGame::announceWinner() const
 {
-    switchTurn();
     if(turn == WHITE)
     {
         cout << "WHITE WINS" << endl;

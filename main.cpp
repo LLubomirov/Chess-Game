@@ -1,4 +1,4 @@
-#include "chessGame.cpp"
+#include "chessGame.h"
 
 #define DOCTEST_CONFIG_IMPLEMENT
 #include "doctest.h"

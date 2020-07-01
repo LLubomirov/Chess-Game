@@ -19,7 +19,7 @@ vector<pair<int, int>> Knight::generatePath(pair<int, int> start, pair<int, int>
     return path;
 }
 
-bool Knight::isAccessible(pair<int, int> start, pair<int, int> destination)
+bool Knight::isAccessible(pair<int, int> start, pair<int, int> destination) const
 {
     return (abs(start.first - destination.first) == 2 && abs(start.second - destination.second) == 1) ||
             (abs(start.first - destination.first) == 1 && abs(start.second - destination.second) == 2);

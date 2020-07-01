@@ -19,12 +19,12 @@ vector<pair<int, int>> Bishop::generatePath(pair<int, int> start, pair<int, int>
     return path;
 }
 
-bool Bishop::isAccessible(pair<int, int> start, pair<int, int> destination)
+bool Bishop::isAccessible(pair<int, int> start, pair<int, int> destination) const
 {
     return abs(start.first - destination.first) == abs(start.second - destination.second);
 }
 
-vector<pair<int, int>> Bishop::generatePathHelper(pair<int, int> start, pair<int, int> destination)
+vector<pair<int, int>> Bishop::generatePathHelper(pair<int, int> start, pair<int, int> destination) const
 {
     vector<pair<int, int>> path;
     int startX = start.first;

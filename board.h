@@ -17,10 +17,10 @@ class Board
 public:
 	Board();
 
-	Square getSquare(pair<int, int>);
-	Figure *getFigure(pair<int, int>);
-	FigureColor getColor(pair<int, int>);
-	FigureType getType(pair<int, int>);
+	Square getSquare(pair<int, int>) const;
+	Figure *getFigure(pair<int, int>) const;
+	FigureColor getColor(pair<int, int>) const;
+	FigureType getType(pair<int, int>) const;
 
 	void playGame();
 	void printBoard();

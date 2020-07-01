@@ -19,22 +19,22 @@ vector<pair<int, int>> Rook::generatePath(pair<int, int> start, pair<int, int> d
     return path;
 }
 
-bool Rook::isAccessible(pair<int, int> start, pair<int, int> destination)
+bool Rook::isAccessible(pair<int, int> start, pair<int, int> destination) const
 {
     return(isHorizontalMove(start, destination) || isVerticalMove(start, destination));
 }
 
-bool Rook::isHorizontalMove(pair<int, int> start, pair<int, int> destination)
+bool Rook::isHorizontalMove(pair<int, int> start, pair<int, int> destination) const
 {
     return start.first == destination.first && start.second != destination.second;
 }
 
-bool Rook::isVerticalMove(pair<int, int> start, pair<int, int> destination)
+bool Rook::isVerticalMove(pair<int, int> start, pair<int, int> destination) const
 {
     return start.first != destination.first && start.second == destination.second;
 }
 
-vector<pair<int, int>> Rook::generatePathHelper(pair<int, int> start, pair<int, int> destination)
+vector<pair<int, int>> Rook::generatePathHelper(pair<int, int> start, pair<int, int> destination) const
 {
     vector<pair<int, int>> path;
     if(isHorizontalMove(start, destination)) 
@@ -49,7 +49,7 @@ vector<pair<int, int>> Rook::generatePathHelper(pair<int, int> start, pair<int, 
     return path;
 }
 
-vector<pair<int, int>> Rook::generateHorizontalPath(pair<int, int> start, pair<int, int> destination)
+vector<pair<int, int>> Rook::generateHorizontalPath(pair<int, int> start, pair<int, int> destination) const
 {
     int startY = start.second;
     vector<pair<int, int>> path;
@@ -65,7 +65,7 @@ vector<pair<int, int>> Rook::generateHorizontalPath(pair<int, int> start, pair<i
     return path;
 }
 
-vector<pair<int, int>> Rook::generateVerticalPath(pair<int, int> start, pair<int, int> destination)
+vector<pair<int, int>> Rook::generateVerticalPath(pair<int, int> start, pair<int, int> destination) const
 {
     int startX = start.first;
     vector<pair<int, int>> path;

@@ -19,7 +19,7 @@ vector<pair<int, int>> Pawn::generatePath(pair<int, int> start, pair<int, int> d
     return path;
 }
 
-bool Pawn::isAccessible(pair<int, int> start, pair<int, int> destination) 
+bool Pawn::isAccessible(pair<int, int> start, pair<int, int> destination) const
 {
     int verticalIncrement = destination.first - start.first;
     int horizontalIncrement = destination.second - start.second;

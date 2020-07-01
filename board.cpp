@@ -11,22 +11,22 @@ Board::Board()
 	}
 }
 
-Square Board::getSquare(pair<int, int> position)
+Square Board::getSquare(pair<int, int> position) const
 {
 	return this->board[position.first][position.second];
 }
 
-Figure* Board::getFigure(pair<int, int> start)
+Figure* Board::getFigure(pair<int, int> start) const
 {
 	return board[start.first][start.second].getFigure();
 }
 
-FigureColor Board::getColor(pair<int, int> position)
+FigureColor Board::getColor(pair<int, int> position) const
 {
 	return this->board[position.first][position.second].getColor();
 }
 
-FigureType Board::getType(pair<int, int> position)
+FigureType Board::getType(pair<int, int> position) const
 {
 	return this->board[position.first][position.second].getType();
 }
