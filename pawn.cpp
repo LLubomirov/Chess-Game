@@ -25,10 +25,12 @@ public:
     /// Handling diagonal attack move when validating input
     bool isAccessible(pair<int, int> start, pair<int, int> destination) 
     {
-        bool isVertical = (start.second == destination.second);
-        int newX = destination.first - start.first;
-        bool validVertical = ((isWhite()) ? (newX == -1) : (newX == 1));
+        int verticalIncrement = destination.first - start.first;
+        int horizontalIncrement = destination.second - start.second;
+        
+        bool isValidVerticalMove = (abs(verticalIncrement) == 1 && horizontalIncrement == 0);
+        bool isValidDiagonalMove = (abs(verticalIncrement) == 1 && abs(horizontalIncrement) == 1);
 
-        return isVertical && validVertical;
+        return isValidVerticalMove || isValidDiagonalMove;
     }
 };

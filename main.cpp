@@ -1,4 +1,4 @@
-#include "board.cpp"
+#include "chessGame.cpp"
 
 #define DOCTEST_CONFIG_IMPLEMENT
 #include "doctest.h"
@@ -6,22 +6,11 @@
 
 int main()
 {
+	// uncomment to start unit tests
 	// doctest::Context().run();
-	// return 0;
 
-	bool newgame = true;
-	while(newgame)
-	{
-		Board b;
-		b.playGame();
-		cout << "Do you want to play again? (y for yes, anything else for no) ";
-		string continuePlaying;
-		cin >> continuePlaying;
-		if (continuePlaying != "y")
-		{
-			newgame = false;
-		}
-	}
+	ChessGame chessGame;
+	chessGame.play();
 
 	return 0;
 }
