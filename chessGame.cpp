@@ -48,7 +48,7 @@ void ChessGame::playOneChessGame()
         switchTurn();
     }
 
-    switchTurn(); // switching the turn again because last turn wasn't playable and so we need to determine
+    switchTurn(); // switching the turn again because last turn wasn't playable and so we need to determine the winner
     announceWinner();
 }
 

@@ -6,9 +6,9 @@
 class Square
 {
 public:
-
     Square();
     Square(Figure *figure);
+    
     Figure *getFigure() const;
     FigureColor getColor() const;
     FigureType getType() const;

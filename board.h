@@ -13,7 +13,7 @@
 #define BOARD_ROWS 8
 #define BOARD_COLUMNS 8
 
-class Board
+class Board : private Square
 {
 public:
 	Board();
@@ -24,12 +24,13 @@ public:
 	FigureType getType(pair<int, int>) const;
 	void printBoard();
 	
-protected:
+private:
 	Square board[BOARD_ROWS][BOARD_COLUMNS];
 
+	friend class ExtendBoard;
 	friend class ChessGame;
 
 	void setBoard();
-	void setFigureOn(Figure*, pair<int, int>); // extremely important
+	void setFigureOn(Figure*, pair<int, int>); 
 };
 #endif

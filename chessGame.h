@@ -3,13 +3,13 @@
 
 #include "board.cpp"
 
-class ChessGame : public Board
+class ChessGame
 {
 public:
     ChessGame();
     void play();
 
-protected:
+private:
     Board board;
     FigureType lastTakenFigure = EMPTY;
     FigureColor turn = WHITE;

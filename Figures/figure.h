@@ -1,5 +1,5 @@
-#ifndef __FIGURE_H_
-#define __FIGURE_H_
+#ifndef __FIGURE_H
+#define __FIGURE_H
 
 #include <string>
 #include <iostream>
@@ -12,10 +12,6 @@ enum FigureType { EMPTY, KING, QUEEN, BISHOP, KNIGHT, ROOK, PAWN };
 
 class Figure 
 {
-private:
-    FigureType type;
-    FigureColor color;
-
 public:
     Figure(FigureType type, FigureColor color);
 
@@ -27,6 +23,10 @@ public:
     bool isEmpty() const;
     FigureColor getColor() const;
     FigureType getType() const;
+    
+private:
+    FigureType type;
+    FigureColor color;
 };
 
 #include "figure.cpp"

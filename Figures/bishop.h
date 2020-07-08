@@ -1,4 +1,4 @@
-#ifndef __BISHOP_H_
+#ifndef __BISHOP_H
 #define __BISHOP_H
 
 class Bishop : public Figure

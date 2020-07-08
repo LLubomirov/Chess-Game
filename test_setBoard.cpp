@@ -1,4 +1,4 @@
-class ExtendBoard : public Board
+class ExtendBoard : private Board
 {
     public:
         ExtendBoard() : Board(){};
