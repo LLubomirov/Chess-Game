@@ -6,7 +6,8 @@
 // #include "./Unit_Tests/test_setBoard.cpp"
 // #include "./Unit_Tests/test_king.cpp"
 // #include "./Unit_Tests/test_queen.cpp"
-#include "./Unit_Tests/test_bishop.cpp"
+// #include "./Unit_Tests/test_bishop.cpp"
+#include "./Unit_Tests/test_knight.cpp"
 
 int main()
 {
