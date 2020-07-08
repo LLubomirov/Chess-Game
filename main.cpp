@@ -2,8 +2,9 @@
 
 #define DOCTEST_CONFIG_IMPLEMENT
 #include "doctest.h"
-// #include "test_setBoard.cpp"
+#include "test_setBoard.cpp"
 #include "test_king.cpp"
+#include "test_figure.cpp"
 
 int main()
 {
