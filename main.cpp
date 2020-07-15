@@ -8,7 +8,8 @@
 // #include "./Unit_Tests/test_queen.cpp"
 // #include "./Unit_Tests/test_bishop.cpp"
 // #include "./Unit_Tests/test_knight.cpp"
-#include "./Unit_Tests/test_rook.cpp"
+// #include "./Unit_Tests/test_rook.cpp"
+#include "./Unit_Tests/test_pawn.cpp"
 
 int main()
 {
