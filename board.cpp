@@ -1,12 +1,10 @@
-#include "board.h"
-
 Board::Board()
 {
 	for(int i = 0; i < BOARD_ROWS; ++i)
 	{
 		for(int j = 0; j < BOARD_COLUMNS; ++j)
 		{
-			setFigureOn(new EmptyFigure (EMPTY, NONE), {i, j});
+			setFigureOn(new EmptyFigure (NONE), {i, j});
 		}
 	}
 }
@@ -33,28 +31,28 @@ FigureType Board::getType(pair<int, int> position) const
 
 void Board::setBoard()
 {
-	setFigureOn(new Rook  (ROOK,   WHITE), {7, 7});
-	setFigureOn(new Knight(KNIGHT, WHITE), {7, 6});
-	setFigureOn(new Bishop(BISHOP, WHITE), {7, 5});
-	setFigureOn(new King  (KING,   WHITE), {7, 4});
-	setFigureOn(new Queen (QUEEN,  WHITE), {7, 3});
-	setFigureOn(new Bishop(BISHOP, WHITE), {7, 2});
-	setFigureOn(new Knight(KNIGHT, WHITE), {7, 1});
-	setFigureOn(new Rook  (ROOK,   WHITE), {7, 0});
+	setFigureOn(new Rook  (WHITE), {7, 7});
+	setFigureOn(new Knight(WHITE), {7, 6});
+	setFigureOn(new Bishop(WHITE), {7, 5});
+	setFigureOn(new King  (WHITE), {7, 4});
+	setFigureOn(new Queen (WHITE), {7, 3});
+	setFigureOn(new Bishop(WHITE), {7, 2});
+	setFigureOn(new Knight(WHITE), {7, 1});
+	setFigureOn(new Rook  (WHITE), {7, 0});
 
-	setFigureOn(new Rook  (ROOK,   BLACK), {0, 7});
-	setFigureOn(new Knight(KNIGHT, BLACK), {0, 6});
-	setFigureOn(new Bishop(BISHOP, BLACK), {0, 5});
-	setFigureOn(new King  (KING,   BLACK), {0, 4});
-	setFigureOn(new Queen (QUEEN,  BLACK), {0, 3});
-	setFigureOn(new Bishop(BISHOP, BLACK), {0, 2});
-	setFigureOn(new Knight(KNIGHT, BLACK), {0, 1});
-	setFigureOn(new Rook  (ROOK,   BLACK), {0, 0});
+	setFigureOn(new Rook  (BLACK), {0, 7});
+	setFigureOn(new Knight(BLACK), {0, 6});
+	setFigureOn(new Bishop(BLACK), {0, 5});
+	setFigureOn(new King  (BLACK), {0, 4});
+	setFigureOn(new Queen (BLACK), {0, 3});
+	setFigureOn(new Bishop(BLACK), {0, 2});
+	setFigureOn(new Knight(BLACK), {0, 1});
+	setFigureOn(new Rook  (BLACK), {0, 0});
 
 	for (int i = 0; i < BOARD_COLUMNS; i++)
 	{
-		setFigureOn(new Pawn(PAWN, BLACK), {1, i});
-		setFigureOn(new Pawn(PAWN, WHITE), {6, i});
+		setFigureOn(new Pawn(BLACK), {1, i});
+		setFigureOn(new Pawn(WHITE), {6, i});
 	}
 }
 

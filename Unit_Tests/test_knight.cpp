@@ -1,6 +1,6 @@
 TEST_CASE("Test knight generating path: (4, 4) -> (5, 2)")
 {
-    Knight knight(EMPTY, NONE);
+    Knight knight(NONE);
 
     pair<int, int> start = {4, 4};
     pair<int, int> destination = {5, 2};
@@ -16,7 +16,7 @@ TEST_CASE("Test knight generating path: (4, 4) -> (5, 2)")
 
 TEST_CASE("Test knight generating path: (4, 4) -> (2, 3)")
 {
-    Knight knight(EMPTY, NONE);
+    Knight knight(NONE);
 
     pair<int, int> start = {4, 4};
     pair<int, int> destination = {2, 3};
@@ -32,7 +32,7 @@ TEST_CASE("Test knight generating path: (4, 4) -> (2, 3)")
 
 TEST_CASE("Test knight generating path: (4, 4) -> (2, 5)")
 {
-    Knight knight(EMPTY, NONE);
+    Knight knight(NONE);
 
     pair<int, int> start = {4, 4};
     pair<int, int> destination = {2, 5};
@@ -48,7 +48,7 @@ TEST_CASE("Test knight generating path: (4, 4) -> (2, 5)")
 
 TEST_CASE("Test knight not generating path: (4, 4) -> (2, 2)")
 {
-    Knight knight(EMPTY, NONE);
+    Knight knight(NONE);
 
     pair<int, int> start = {4, 4};
     pair<int, int> destination = {2, 2};
@@ -61,7 +61,7 @@ TEST_CASE("Test knight not generating path: (4, 4) -> (2, 2)")
 
 TEST_CASE("Test knight can access: (4, 5) -> (2, 4)")
 {
-    Knight knight(EMPTY, NONE);
+    Knight knight(NONE);
 
     pair<int, int> start = {4, 5};
     pair<int, int> destination = {2, 4};
@@ -70,7 +70,7 @@ TEST_CASE("Test knight can access: (4, 5) -> (2, 4)")
 
 TEST_CASE("Test knight can access: (3, 3) -> (1, 2)")
 {
-    Knight knight(EMPTY, NONE);
+    Knight knight(NONE);
 
     pair<int, int> start = {3, 3};
     pair<int, int> destination = {1, 2};
@@ -79,7 +79,7 @@ TEST_CASE("Test knight can access: (3, 3) -> (1, 2)")
 
 TEST_CASE("Test knight cannot access: (0, 1) -> (2, 3)")
 {
-    Knight knight(EMPTY, NONE);
+    Knight knight(NONE);
 
     pair<int, int> start = {0, 1};
     pair<int, int> destination = {2, 3};

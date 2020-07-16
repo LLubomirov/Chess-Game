@@ -1,8 +1,8 @@
 class ExtendedFigure : public Figure
 {
 public:
-    ExtendedFigure(FigureType type, FigureColor color) :
-        Figure(type, color){};
+    ExtendedFigure(FigureColor color) :
+        Figure(color){};
 
     char print()
     {
@@ -18,36 +18,36 @@ public:
 
 TEST_CASE("Test figure is white")
 {   
-    ExtendedFigure efigure(EMPTY, WHITE);
+    ExtendedFigure efigure(WHITE);
     CHECK(efigure.isWhite());
 }
 
 TEST_CASE("Test figure is not white")
 {
-    ExtendedFigure efigure(EMPTY, NONE);
+    ExtendedFigure efigure(NONE);
     CHECK(efigure.isWhite() == false);
 }
 
 TEST_CASE("Test figure is not white")
 {
-    ExtendedFigure efigure(EMPTY, BLACK);
+    ExtendedFigure efigure(BLACK);
     CHECK(efigure.isWhite() == false);
 }
 
 TEST_CASE("Test figure is black")
 {
-    ExtendedFigure efigure(EMPTY, BLACK);
+    ExtendedFigure efigure(BLACK);
     CHECK(efigure.isBlack());
 }
 
 TEST_CASE("Test figure is not black")
 {
-    ExtendedFigure efigure(EMPTY, NONE);
+    ExtendedFigure efigure(NONE);
     CHECK(efigure.isBlack() == false);
 }
 
 TEST_CASE("Test figure is not black")
 {
-    ExtendedFigure efigure(EMPTY, WHITE);
+    ExtendedFigure efigure(WHITE);
     CHECK(efigure.isBlack() == false);
 }

@@ -27,10 +27,13 @@ public:
 private:
 	Square board[BOARD_ROWS][BOARD_COLUMNS];
 
-	friend class ExtendBoard;
+	friend class ExtendedBoard; 
 	friend class ChessGame;
 
 	void setBoard();
 	void setFigureOn(Figure*, pair<int, int>); 
 };
+
+#include "board.cpp"
+
 #endif

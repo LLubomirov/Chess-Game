@@ -1,5 +1,8 @@
-King::King(FigureType figureType, FigureColor figureColor) :
-    Figure(figureType, figureColor){}
+King::King(FigureColor figureColor) :
+    Figure(figureColor)
+{
+    setType(KING);
+}
 
 char King::print()
 {

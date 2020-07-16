@@ -1,5 +1,8 @@
-Knight::Knight(FigureType figureType, FigureColor figureColor) :
-    Figure(figureType, figureColor){}
+Knight::Knight(FigureColor figureColor) :
+    Figure(figureColor)
+{
+    setType(KNIGHT);
+}
 
 char Knight::print()
 {

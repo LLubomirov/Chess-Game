@@ -1,6 +1,6 @@
 TEST_CASE("Test bishop generating path: (3, 3) -> (7, 7)")
 {
-    Bishop bishop(EMPTY, NONE);
+    Bishop bishop(NONE);
 
     pair<int, int> start = {3, 3};
     pair<int, int> destination = {7, 7};
@@ -19,7 +19,7 @@ TEST_CASE("Test bishop generating path: (3, 3) -> (7, 7)")
 
 TEST_CASE("Test bishop generating path: (5, 3) -> (2, 0)")
 {
-    Bishop bishop(EMPTY, NONE);
+    Bishop bishop(NONE);
 
     pair<int, int> start = {5, 3};
     pair<int, int> destination = {2, 0};
@@ -37,7 +37,7 @@ TEST_CASE("Test bishop generating path: (5, 3) -> (2, 0)")
 
 TEST_CASE("Test bishop generating path: (4, 6) -> (6, 4)")
 {
-    Bishop bishop(EMPTY, NONE);
+    Bishop bishop(NONE);
 
     pair<int, int> start = {4, 6};
     pair<int, int> destination = {6, 4};
@@ -54,7 +54,7 @@ TEST_CASE("Test bishop generating path: (4, 6) -> (6, 4)")
 
 TEST_CASE("Test bishop not generating path: (4, 6) -> (3, 4)")
 {
-    Bishop bishop(EMPTY, NONE);
+    Bishop bishop(NONE);
 
     pair<int, int> start = {4, 6};
     pair<int, int> destination = {3, 4};
@@ -67,7 +67,7 @@ TEST_CASE("Test bishop not generating path: (4, 6) -> (3, 4)")
 
 TEST_CASE("Test bishop can access: (4, 5) -> (2, 3)")
 {
-    Bishop bishop(EMPTY, NONE);
+    Bishop bishop(NONE);
 
     pair<int, int> start = {4, 5};
     pair<int, int> destination = {2, 3};
@@ -76,7 +76,7 @@ TEST_CASE("Test bishop can access: (4, 5) -> (2, 3)")
 
 TEST_CASE("Test bishop can access: (3, 3) -> (7, 7)")
 {
-    Bishop bishop(EMPTY, NONE);
+    Bishop bishop(NONE);
 
     pair<int, int> start = {3, 3};
     pair<int, int> destination = {7, 7};
@@ -85,7 +85,7 @@ TEST_CASE("Test bishop can access: (3, 3) -> (7, 7)")
 
 TEST_CASE("Test bishop cannot access: (0, 1) -> (3, 3)")
 {
-    Bishop bishop(EMPTY, NONE);
+    Bishop bishop(NONE);
 
     pair<int, int> start = {0, 1};
     pair<int, int> destination = {3, 3};

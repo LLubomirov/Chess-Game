@@ -1,7 +1,7 @@
 #ifndef __CHESS_GAME_H
 #define __CHESS_GAME_H
 
-#include "board.cpp"
+#include "board.h"
 
 class ChessGame
 {

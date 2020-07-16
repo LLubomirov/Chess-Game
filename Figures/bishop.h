@@ -4,7 +4,7 @@
 class Bishop : public Figure
 {
 public:
-    Bishop(FigureType figureType, FigureColor figureColor);
+    Bishop(FigureColor figureColor);
 
     char print();
     vector<pair<int, int>> generatePath(pair<int, int> start, pair<int, int> destination);

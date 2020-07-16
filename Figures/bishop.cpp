@@ -1,5 +1,8 @@
-Bishop::Bishop(FigureType figureType, FigureColor figureColor) :
-    Figure(figureType, figureColor){}
+Bishop::Bishop(FigureColor figureColor) :
+    Figure(figureColor)
+{
+    setType(BISHOP);
+}
 
 char Bishop::print()
 {

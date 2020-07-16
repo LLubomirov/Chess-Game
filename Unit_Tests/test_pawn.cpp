@@ -2,7 +2,7 @@
 
 TEST_CASE("Test pawn generating path: (4, 3) -> (3, 3)")
 {
-    Pawn pawn(EMPTY, WHITE);
+    Pawn pawn(WHITE);
 
     pair<int, int> start = {4, 3};
     pair<int, int> destination = {3, 3};
@@ -18,7 +18,7 @@ TEST_CASE("Test pawn generating path: (4, 3) -> (3, 3)")
 
 TEST_CASE("Test pawn generating path: (5, 1) -> (4, 1)")
 {
-    Pawn pawn(EMPTY, WHITE);
+    Pawn pawn(WHITE);
 
     pair<int, int> start = {5, 1};
     pair<int, int> destination = {4, 1};
@@ -34,7 +34,7 @@ TEST_CASE("Test pawn generating path: (5, 1) -> (4, 1)")
 
 TEST_CASE("Test pawn not generating path: (3, 1) -> (4, 1)")
 {
-    Pawn pawn(EMPTY, WHITE);
+    Pawn pawn(WHITE);
 
     pair<int, int> start = {3, 1};
     pair<int, int> destination = {4, 1};
@@ -47,7 +47,7 @@ TEST_CASE("Test pawn not generating path: (3, 1) -> (4, 1)")
 
 TEST_CASE("Test pawn can access: (1, 4) -> (0, 4)")
 {
-    Pawn pawn(EMPTY, WHITE);
+    Pawn pawn(WHITE);
 
     pair<int, int> start = {1, 4};
     pair<int, int> destination = {0, 4};
@@ -56,7 +56,7 @@ TEST_CASE("Test pawn can access: (1, 4) -> (0, 4)")
 
 TEST_CASE("Test pawn can access: (4, 6) -> (3, 6)")
 {
-    Pawn pawn(EMPTY, WHITE);
+    Pawn pawn(WHITE);
 
     pair<int, int> start = {4, 6};
     pair<int, int> destination = {3, 6};
@@ -65,7 +65,7 @@ TEST_CASE("Test pawn can access: (4, 6) -> (3, 6)")
 
 TEST_CASE("Test pawn cannot access: (1, 3) -> (1, 4)")
 {
-    Pawn pawn(EMPTY, WHITE);
+    Pawn pawn(WHITE);
 
     pair<int, int> start = {1, 3};
     pair<int, int> destination = {1, 4};
@@ -76,7 +76,7 @@ TEST_CASE("Test pawn cannot access: (1, 3) -> (1, 4)")
 
 TEST_CASE("Test pawn generating path: (3, 3) -> (4, 3)")
 {
-    Pawn pawn(EMPTY, BLACK);
+    Pawn pawn(BLACK);
 
     pair<int, int> start = {3, 3};
     pair<int, int> destination = {4, 3};
@@ -92,7 +92,7 @@ TEST_CASE("Test pawn generating path: (3, 3) -> (4, 3)")
 
 TEST_CASE("Test pawn generating path: (4, 1) -> (5, 1)")
 {
-    Pawn pawn(EMPTY, BLACK);
+    Pawn pawn(BLACK);
 
     pair<int, int> start = {4, 1};
     pair<int, int> destination = {5, 1};
@@ -108,7 +108,7 @@ TEST_CASE("Test pawn generating path: (4, 1) -> (5, 1)")
 
 TEST_CASE("Test pawn not generating path: (4, 1) -> (3, 1)")
 {
-    Pawn pawn(EMPTY, BLACK);
+    Pawn pawn(BLACK);
 
     pair<int, int> start = {4, 1};
     pair<int, int> destination = {3, 1};
@@ -121,7 +121,7 @@ TEST_CASE("Test pawn not generating path: (4, 1) -> (3, 1)")
 
 TEST_CASE("Test pawn can access: (0, 4) -> (1, 4)")
 {
-    Pawn pawn(EMPTY, BLACK);
+    Pawn pawn(BLACK);
 
     pair<int, int> start = {0, 4};
     pair<int, int> destination = {1, 4};
@@ -130,7 +130,7 @@ TEST_CASE("Test pawn can access: (0, 4) -> (1, 4)")
 
 TEST_CASE("Test pawn can access: (3, 6) -> (4, 6)")
 {
-    Pawn pawn(EMPTY, BLACK);
+    Pawn pawn(BLACK);
 
     pair<int, int> start = {3, 6};
     pair<int, int> destination = {4, 6};
@@ -139,7 +139,7 @@ TEST_CASE("Test pawn can access: (3, 6) -> (4, 6)")
 
 TEST_CASE("Test pawn cannot access: (1, 3) -> (1, 4)")
 {
-    Pawn pawn(EMPTY, BLACK);
+    Pawn pawn(BLACK);
 
     pair<int, int> start = {1, 3};
     pair<int, int> destination = {1, 4};

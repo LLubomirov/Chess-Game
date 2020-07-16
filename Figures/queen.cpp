@@ -1,5 +1,8 @@
-Queen::Queen(FigureType figureType, FigureColor figureColor) :
-    Figure(figureType, figureColor){}
+Queen::Queen(FigureColor figureColor) : 
+    Figure(figureColor)
+{
+    setType(QUEEN);
+}
 
 char Queen::print()
 {

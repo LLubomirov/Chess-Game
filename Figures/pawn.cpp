@@ -1,5 +1,8 @@
-Pawn::Pawn(FigureType figureType, FigureColor figureColor) :
-    Figure(figureType, figureColor){}
+Pawn::Pawn(FigureColor figureColor) :
+    Figure(figureColor)
+{
+    setType(PAWN);
+}
 
 char Pawn::print()
 {

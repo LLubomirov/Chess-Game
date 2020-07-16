@@ -42,7 +42,7 @@ void ChessGame::playOneChessGame()
         {
 		    cout << "Black's turn" << endl;
         }
-		cout << "Type in your move as a single four character string. Use column index followed by row index in each pair." << endl;
+		cout << "Type in your move as a single four character string with upercase letters [A2A3 for example].\n" << endl;
         
         performMove();
         switchTurn();
@@ -217,7 +217,7 @@ void ChessGame::moveFigure()
     Figure *newFigure = board.getSquare(start).getFigure();
     board.setFigureOn(newFigure, destination);
     
-    EmptyFigure *emptyFigure = new EmptyFigure(EMPTY, NONE);
+    EmptyFigure *emptyFigure = new EmptyFigure(NONE);
     board.setFigureOn(emptyFigure, start);
 }
 

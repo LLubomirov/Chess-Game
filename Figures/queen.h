@@ -4,7 +4,7 @@
 class Queen : public Figure
 {
 public:
-    Queen(FigureType figureType, FigureColor figureColor);
+    Queen(FigureColor figureColor);
 
     char print();
     vector<pair<int, int>> generatePath(pair<int, int> start, pair<int, int> destination);

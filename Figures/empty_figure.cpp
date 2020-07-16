@@ -1,5 +1,8 @@
-EmptyFigure::EmptyFigure(FigureType figureType, FigureColor figureColor) : 
-    Figure(figureType, figureColor){}
+EmptyFigure::EmptyFigure(FigureColor figureColor) : 
+    Figure(figureColor)
+{
+    setType(EMPTY);
+}
 
 char EmptyFigure::print()
 {

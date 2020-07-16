@@ -1,6 +1,5 @@
-Figure::Figure(FigureType type, FigureColor color)
+Figure::Figure(FigureColor color)
 {
-    this->type = type;
     this->color = color;
 }
 

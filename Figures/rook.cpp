@@ -1,5 +1,8 @@
-Rook::Rook(FigureType figureType, FigureColor figureColor) :
-    Figure(figureType, figureColor){}
+Rook::Rook(FigureColor figureColor) :
+    Figure(figureColor)
+{
+    setType(ROOK);
+}
     
 char Rook::print()
 {

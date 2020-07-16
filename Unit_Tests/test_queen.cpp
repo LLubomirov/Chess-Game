@@ -1,6 +1,6 @@
 TEST_CASE("Test queen generating path: (3, 3) -> (7, 7)")
 {
-    Queen queen(EMPTY, NONE);
+    Queen queen(NONE);
 
     pair<int, int> start = {3, 3};
     pair<int, int> destination = {7, 7};
@@ -19,7 +19,7 @@ TEST_CASE("Test queen generating path: (3, 3) -> (7, 7)")
 
 TEST_CASE("Test queen generating path: (3, 3) -> (3, 0)")
 {
-    Queen queen(EMPTY, NONE);
+    Queen queen(NONE);
 
     pair<int, int> start = {3, 3};
     pair<int, int> destination = {3, 0};
@@ -37,7 +37,7 @@ TEST_CASE("Test queen generating path: (3, 3) -> (3, 0)")
 
 TEST_CASE("Test queen not generating path: (3, 3) -> (2, 7)")
 {
-    Queen queen(EMPTY, NONE);
+    Queen queen(NONE);
 
     pair<int, int> start = {3, 3};
     pair<int, int> destination = {2, 7};
@@ -50,7 +50,7 @@ TEST_CASE("Test queen not generating path: (3, 3) -> (2, 7)")
 
 TEST_CASE("Test queen can access: (3, 3) -> (3, 5)")
 {
-    Queen queen(EMPTY, NONE);
+    Queen queen(NONE);
 
     pair<int, int> start = {3, 3};
     pair<int, int> destination = {3, 5};
@@ -59,7 +59,7 @@ TEST_CASE("Test queen can access: (3, 3) -> (3, 5)")
 
 TEST_CASE("Test queen can access: (4, 5) -> (2, 3)")
 {
-    Queen queen(EMPTY, NONE);
+    Queen queen(NONE);
 
     pair<int, int> start = {4, 5};
     pair<int, int> destination = {2, 3};
@@ -68,7 +68,7 @@ TEST_CASE("Test queen can access: (4, 5) -> (2, 3)")
 
 TEST_CASE("Test queen cannot access: (6, 2) -> (3, 3)")
 {
-    Queen queen(EMPTY, NONE);
+    Queen queen(NONE);
 
     pair<int, int> start = {6, 2};
     pair<int, int> destination = {3, 3};
@@ -77,7 +77,7 @@ TEST_CASE("Test queen cannot access: (6, 2) -> (3, 3)")
 
 TEST_CASE("Test queen is on straight move: (3, 3) -> (3, 1)")
 {
-    Queen queen(EMPTY, NONE);
+    Queen queen(NONE);
 
     pair<int, int> start = {3, 3};
     pair<int, int> destination = {3, 1};
@@ -86,7 +86,7 @@ TEST_CASE("Test queen is on straight move: (3, 3) -> (3, 1)")
 
 TEST_CASE("Test queen is on straight move: (3, 3) -> (6, 3)")
 {
-    Queen queen(EMPTY, NONE);
+    Queen queen(NONE);
 
     pair<int, int> start = {3, 3};
     pair<int, int> destination = {6, 3};
@@ -95,7 +95,7 @@ TEST_CASE("Test queen is on straight move: (3, 3) -> (6, 3)")
 
 TEST_CASE("Test queen is not on straight move: (3, 3) -> (2, 7)")
 {
-    Queen queen(EMPTY, NONE);
+    Queen queen(NONE);
 
     pair<int, int> start = {3, 3};
     pair<int, int> destination = {2, 7};
@@ -104,7 +104,7 @@ TEST_CASE("Test queen is not on straight move: (3, 3) -> (2, 7)")
 
 TEST_CASE("Test queen is on horizontal move: (3, 3) -> (3, 6)")
 {
-    Queen queen(EMPTY, NONE);
+    Queen queen(NONE);
 
     pair<int, int> start = {3, 3};
     pair<int, int> destination = {3, 6};
@@ -113,7 +113,7 @@ TEST_CASE("Test queen is on horizontal move: (3, 3) -> (3, 6)")
 
 TEST_CASE("Test queen is on horizontal move: (3, 3) -> (3, 2)")
 {
-    Queen queen(EMPTY, NONE);
+    Queen queen(NONE);
 
     pair<int, int> start = {3, 3};
     pair<int, int> destination = {3, 2};
@@ -122,7 +122,7 @@ TEST_CASE("Test queen is on horizontal move: (3, 3) -> (3, 2)")
 
 TEST_CASE("Test queen is not on horizontal move: (3, 3) -> (4, 6)")
 {
-    Queen queen(EMPTY, NONE);
+    Queen queen(NONE);
 
     pair<int, int> start = {3, 3};
     pair<int, int> destination = {4, 6};
@@ -131,7 +131,7 @@ TEST_CASE("Test queen is not on horizontal move: (3, 3) -> (4, 6)")
 
 TEST_CASE("Test queen is on vertical move: (3, 3) -> (5, 3)")
 {
-    Queen queen(EMPTY, NONE);
+    Queen queen(NONE);
 
     pair<int, int> start = {3, 3};
     pair<int, int> destination = {5, 3};
@@ -140,7 +140,7 @@ TEST_CASE("Test queen is on vertical move: (3, 3) -> (5, 3)")
 
 TEST_CASE("Test queen is on vertical move: (3, 3) -> (2, 3)")
 {
-    Queen queen(EMPTY, NONE);
+    Queen queen(NONE);
 
     pair<int, int> start = {3, 3};
     pair<int, int> destination = {2, 3};
@@ -149,7 +149,7 @@ TEST_CASE("Test queen is on vertical move: (3, 3) -> (2, 3)")
 
 TEST_CASE("Test queen is not on vertical move: (3, 3) -> (5, 2)")
 {
-    Queen queen(EMPTY, NONE);
+    Queen queen(NONE);
 
     pair<int, int> start = {3, 3};
     pair<int, int> destination = {5, 2};
@@ -158,7 +158,7 @@ TEST_CASE("Test queen is not on vertical move: (3, 3) -> (5, 2)")
 
 TEST_CASE("Test queen is on diagonal move: (2, 2) -> (7, 7)")
 {
-    Queen queen(EMPTY, NONE);
+    Queen queen(NONE);
 
     pair<int, int> start = {2, 2};
     pair<int, int> destination = {7, 7};
@@ -167,7 +167,7 @@ TEST_CASE("Test queen is on diagonal move: (2, 2) -> (7, 7)")
 
 TEST_CASE("Test queen is on diagonal move: (3, 0) -> (0, 3)")
 {
-    Queen queen(EMPTY, NONE);
+    Queen queen(NONE);
 
     pair<int, int> start = {3, 0};
     pair<int, int> destination = {0, 3};
@@ -176,7 +176,7 @@ TEST_CASE("Test queen is on diagonal move: (3, 0) -> (0, 3)")
 
 TEST_CASE("Test queen is on diagonal move: (3, 3) -> (5, 1)")
 {
-    Queen queen(EMPTY, NONE);
+    Queen queen(NONE);
 
     pair<int, int> start = {3, 3};
     pair<int, int> destination = {5, 1};
@@ -185,7 +185,7 @@ TEST_CASE("Test queen is on diagonal move: (3, 3) -> (5, 1)")
 
 TEST_CASE("Test queen is on diagonal move: (3, 5) -> (0, 2)")
 {
-    Queen queen(EMPTY, NONE);
+    Queen queen(NONE);
 
     pair<int, int> start = {3, 5};
     pair<int, int> destination = {0, 2};
@@ -194,7 +194,7 @@ TEST_CASE("Test queen is on diagonal move: (3, 5) -> (0, 2)")
 
 TEST_CASE("Test queen is not on diagonal move: (1, 4) -> (5, 5)")
 {
-    Queen queen(EMPTY, NONE);
+    Queen queen(NONE);
 
     pair<int, int> start = {1, 4};
     pair<int, int> destination = {5, 5};
@@ -203,7 +203,7 @@ TEST_CASE("Test queen is not on diagonal move: (1, 4) -> (5, 5)")
 
 TEST_CASE("Test queen generating path with helper: (3, 3) -> (7, 7)")
 {
-    Queen queen(EMPTY, NONE);
+    Queen queen(NONE);
 
     pair<int, int> start = {3, 3};
     pair<int, int> destination = {7, 7};
@@ -222,7 +222,7 @@ TEST_CASE("Test queen generating path with helper: (3, 3) -> (7, 7)")
 
 TEST_CASE("Test queen generating path with helper: (3, 3) -> (3, 0)")
 {
-    Queen queen(EMPTY, NONE);
+    Queen queen(NONE);
 
     pair<int, int> start = {3, 3};
     pair<int, int> destination = {3, 0};
@@ -240,7 +240,7 @@ TEST_CASE("Test queen generating path with helper: (3, 3) -> (3, 0)")
 
 TEST_CASE("Test queen generating straight path: (6, 6) -> (3, 6)")
 {
-    Queen queen(EMPTY, NONE);
+    Queen queen(NONE);
 
     pair<int, int> start = {6, 6};
     pair<int, int> destination = {3, 6};
@@ -258,7 +258,7 @@ TEST_CASE("Test queen generating straight path: (6, 6) -> (3, 6)")
 
 TEST_CASE("Test queen generating horizontal path: (6, 6) -> (6, 4)")
 {
-    Queen queen(EMPTY, NONE);
+    Queen queen(NONE);
 
     pair<int, int> start = {6, 6};
     pair<int, int> destination = {6, 4};
@@ -275,7 +275,7 @@ TEST_CASE("Test queen generating horizontal path: (6, 6) -> (6, 4)")
 
 TEST_CASE("Test queen generating horizontal path: (5, 2) -> (5, 0)")
 {
-    Queen queen(EMPTY, NONE);
+    Queen queen(NONE);
 
     pair<int, int> start = {5, 2};
     pair<int, int> destination = {5, 0};
@@ -292,7 +292,7 @@ TEST_CASE("Test queen generating horizontal path: (5, 2) -> (5, 0)")
 
 TEST_CASE("Test queen generating vertical path: (6, 6) -> (4, 6)")
 {
-    Queen queen(EMPTY, NONE);
+    Queen queen(NONE);
 
     pair<int, int> start = {6, 6};
     pair<int, int> destination = {4, 6};
@@ -309,7 +309,7 @@ TEST_CASE("Test queen generating vertical path: (6, 6) -> (4, 6)")
 
 TEST_CASE("Test queen generating vertical path: (2, 5) -> (0, 5)")
 {
-    Queen queen(EMPTY, NONE);
+    Queen queen(NONE);
 
     pair<int, int> start = {2, 5};
     pair<int, int> destination = {0, 5};
@@ -326,7 +326,7 @@ TEST_CASE("Test queen generating vertical path: (2, 5) -> (0, 5)")
 
 TEST_CASE("Test queen generating diagonal path: (2, 2) -> (0, 4)")
 {
-    Queen queen(EMPTY, NONE);
+    Queen queen(NONE);
 
     pair<int, int> start = {2, 2};
     pair<int, int> destination = {0, 4};
@@ -343,7 +343,7 @@ TEST_CASE("Test queen generating diagonal path: (2, 2) -> (0, 4)")
 
 TEST_CASE("Test queen generating diagonal path: (3, 5) -> (5, 3)")
 {
-    Queen queen(EMPTY, NONE);
+    Queen queen(NONE);
 
     pair<int, int> start = {3, 5};
     pair<int, int> destination = {5, 3};

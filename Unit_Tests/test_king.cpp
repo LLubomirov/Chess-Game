@@ -1,6 +1,6 @@
 TEST_CASE("Test king generating path: (3, 3) -> (3, 4)")
 {
-    King king(EMPTY, NONE);
+    King king(NONE);
 
     pair<int, int> start = {3, 3};
     pair<int, int> destination = {3, 4};
@@ -16,7 +16,7 @@ TEST_CASE("Test king generating path: (3, 3) -> (3, 4)")
 
 TEST_CASE("Test king generating path: (3, 3) -> (2, 2)")
 {
-    King king(EMPTY, NONE);
+    King king(NONE);
 
     pair<int, int> start = {3, 3};
     pair<int, int> destination = {2, 2};
@@ -32,7 +32,7 @@ TEST_CASE("Test king generating path: (3, 3) -> (2, 2)")
 
 TEST_CASE("Test king not generating path: (3, 3) -> (1, 5)")
 {
-    King king(EMPTY, NONE);
+    King king(NONE);
 
     pair<int, int> start = {3, 3};
     pair<int, int> destination = {1, 5};
@@ -45,7 +45,7 @@ TEST_CASE("Test king not generating path: (3, 3) -> (1, 5)")
 
 TEST_CASE("Test king can access: (3, 3) -> (3, 4)")
 {
-    King king(EMPTY, NONE);
+    King king(NONE);
 
     pair<int, int> start = {3, 3};
     pair<int, int> destination = {3, 4};
@@ -54,7 +54,7 @@ TEST_CASE("Test king can access: (3, 3) -> (3, 4)")
 
 TEST_CASE("Test king can access: (3, 3) -> (2, 2)")
 {
-    King king(EMPTY, NONE);
+    King king(NONE);
 
     pair<int, int> start = {3, 3};
     pair<int, int> destination = {2, 2};
@@ -63,7 +63,7 @@ TEST_CASE("Test king can access: (3, 3) -> (2, 2)")
 
 TEST_CASE("Test king cannot access: (3, 3) -> (2, 5)")
 {
-    King king(EMPTY, NONE);
+    King king(NONE);
 
     pair<int, int> start = {3, 3};
     pair<int, int> destination = {2, 5};
@@ -72,7 +72,7 @@ TEST_CASE("Test king cannot access: (3, 3) -> (2, 5)")
 
 TEST_CASE("Test king is on straight move (3, 3) -> (3, 2)")
 {
-    King king(EMPTY, NONE);
+    King king(NONE);
 
     pair<int, int> start = {3, 3};
     pair<int, int> destination = {3, 2};
@@ -81,7 +81,7 @@ TEST_CASE("Test king is on straight move (3, 3) -> (3, 2)")
 
 TEST_CASE("Test king is on straight move (3, 3) -> (2, 3)")
 {
-    King king(EMPTY, NONE);
+    King king(NONE);
 
     pair<int, int> start = {3, 3};
     pair<int, int> destination = {2, 3};
@@ -90,7 +90,7 @@ TEST_CASE("Test king is on straight move (3, 3) -> (2, 3)")
 
 TEST_CASE("Test king is not on straight move (3, 3) -> (3, 7)")
 {
-    King king(EMPTY, NONE);
+    King king(NONE);
 
     pair<int, int> start = {3, 3};
     pair<int, int> destination = {3, 7};
@@ -99,7 +99,7 @@ TEST_CASE("Test king is not on straight move (3, 3) -> (3, 7)")
 
 TEST_CASE("Test king is on horizontal move (3, 3) -> (3, 4)")
 {
-    King king(EMPTY, NONE);
+    King king(NONE);
 
     pair<int, int> start = {3, 3};
     pair<int, int> destination = {3, 4};
@@ -108,7 +108,7 @@ TEST_CASE("Test king is on horizontal move (3, 3) -> (3, 4)")
 
 TEST_CASE("Test king is on horizontal move (3, 3) -> (3, 2)")
 {
-    King king(EMPTY, NONE);
+    King king(NONE);
 
     pair<int, int> start = {3, 3};
     pair<int, int> destination = {3, 2};
@@ -117,7 +117,7 @@ TEST_CASE("Test king is on horizontal move (3, 3) -> (3, 2)")
 
 TEST_CASE("Test king is not on horizontal move (3, 3) -> (3, 1)")
 {
-    King king(EMPTY, NONE);
+    King king(NONE);
 
     pair<int, int> start = {3, 3};
     pair<int, int> destination = {3, 1};
@@ -126,7 +126,7 @@ TEST_CASE("Test king is not on horizontal move (3, 3) -> (3, 1)")
 
 TEST_CASE("Test king is on vertical move (3, 3) -> (4, 3)")
 {
-    King king(EMPTY, NONE);
+    King king(NONE);
 
     pair<int, int> start = {3, 3};
     pair<int, int> destination = {4, 3};
@@ -135,7 +135,7 @@ TEST_CASE("Test king is on vertical move (3, 3) -> (4, 3)")
 
 TEST_CASE("Test king is on vertical move (3, 3) -> (2, 3)")
 {
-    King king(EMPTY, NONE);
+    King king(NONE);
 
     pair<int, int> start = {3, 3};
     pair<int, int> destination = {2, 3};
@@ -144,7 +144,7 @@ TEST_CASE("Test king is on vertical move (3, 3) -> (2, 3)")
 
 TEST_CASE("Test king is not on vertical move (3, 3) -> (5, 3)")
 {
-    King king(EMPTY, NONE);
+    King king(NONE);
 
     pair<int, int> start = {3, 3};
     pair<int, int> destination = {5, 3};
@@ -153,7 +153,7 @@ TEST_CASE("Test king is not on vertical move (3, 3) -> (5, 3)")
 
 TEST_CASE("Test king is on diagonal move (3, 3) -> (4, 2)")
 {
-    King king(EMPTY, NONE);
+    King king(NONE);
 
     pair<int, int> start = {3, 3};
     pair<int, int> destination = {4, 2};
@@ -162,7 +162,7 @@ TEST_CASE("Test king is on diagonal move (3, 3) -> (4, 2)")
 
 TEST_CASE("Test king is on diagonal move (3, 3) -> (4, 4)")
 {
-    King king(EMPTY, NONE);
+    King king(NONE);
 
     pair<int, int> start = {3, 3};
     pair<int, int> destination = {4, 4};
@@ -171,7 +171,7 @@ TEST_CASE("Test king is on diagonal move (3, 3) -> (4, 4)")
 
 TEST_CASE("Test king is on diagonal move (3, 3) -> (2, 4)")
 {
-    King king(EMPTY, NONE);
+    King king(NONE);
 
     pair<int, int> start = {3, 3};
     pair<int, int> destination = {2, 4};
@@ -180,7 +180,7 @@ TEST_CASE("Test king is on diagonal move (3, 3) -> (2, 4)")
 
 TEST_CASE("Test king is on diagonal move (3, 3) -> (2, 2)")
 {
-    King king(EMPTY, NONE);
+    King king(NONE);
 
     pair<int, int> start = {3, 3};
     pair<int, int> destination = {2, 2};
@@ -189,7 +189,7 @@ TEST_CASE("Test king is on diagonal move (3, 3) -> (2, 2)")
 
 TEST_CASE("Test king is not on diagonal move (3, 3) -> (5, 5)")
 {
-    King king(EMPTY, NONE);
+    King king(NONE);
 
     pair<int, int> start = {3, 3};
     pair<int, int> destination = {5, 5};
