@@ -25,7 +25,17 @@ bool Pawn::isAccessible(pair<int, int> start, pair<int, int> destination) const
     int horizontalIncrement = destination.second - start.second;
     
     bool isValidVerticalMove = (abs(verticalIncrement) == 1 && horizontalIncrement == 0);
-    bool isValidDiagonalMove = (abs(verticalIncrement) == 1 && abs(horizontalIncrement) == 1);
+    bool isCorrectDirection = false;
+    if(this->getColor() == WHITE)
+    {
+        isCorrectDirection = (verticalIncrement == -1);
+    }
+    else
+    {
+        isCorrectDirection = (verticalIncrement == 1);
+    }
 
-    return isValidVerticalMove || isValidDiagonalMove;
+    return isValidVerticalMove 
+    && isCorrectDirection
+    ;
 }

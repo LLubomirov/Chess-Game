@@ -102,22 +102,22 @@ bool ChessGame::isValidMove() const
 {
     if(!inputInBounds())
     {
-        throw invalid_argument("Input is out of bounds");
+        throw invalid_argument("Input is out of bounds!");
     }
 
     if(!figureOnTurn())
     {
-        throw invalid_argument("You can move only the figures in your possession");
+        throw invalid_argument("You can move only the figures in your possession!");
     }
 
     if(!landEmptyOrEnemy())
     {
-        throw invalid_argument("You cannot land on your own figure");
+        throw invalid_argument("You cannot land on your own figure!");
     }
 
     if(!isReachable())
     {
-        throw invalid_argument("You cannot land there, something is blocking your path");
+        throw invalid_argument("You cannot land there, that move is illegal!");
     }
     
     return true;
@@ -237,10 +237,10 @@ void ChessGame::announceWinner() const
 {
     if(turn == WHITE)
     {
-        cout << "WHITE WINS" << endl;
+        cout << "WHITE WINS!" << endl;
     }  
     else
     {
-        cout << "BLACK WINS" << endl;
+        cout << "BLACK WINS!" << endl;
     }
 }
