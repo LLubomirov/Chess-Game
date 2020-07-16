@@ -29,6 +29,7 @@ private:
 
 	friend class ExtendedBoard; 
 	friend class ChessGame;
+	friend class ExtendedChessGame;
 
 	void setBoard();
 	void setFigureOn(Figure*, pair<int, int>); 

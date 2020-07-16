@@ -10,12 +10,15 @@ public:
     void play();
 
 private:
+    friend class ExtendedChessGame;
+
     Board board;
     FigureType lastTakenFigure = EMPTY;
     FigureColor turn = WHITE;
     pair<int, int> start;
     pair<int, int> destination;
     
+    void printLogo();
     void playOneChessGame();
     void setChessGame();
     bool thereIsWinner() const;

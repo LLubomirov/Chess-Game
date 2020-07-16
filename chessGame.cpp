@@ -10,22 +10,26 @@ void ChessGame::play()
     string continuePlaying = "y";
     while(continuePlaying == "y")
     {
-        cout << "   _____ _    _ ______  _____ _____ " << endl
-             << "  / ____| |  | |  ____|/ ____/ ____|" << endl
-             << " | |    | |__| | |__  | (___| (___  " << endl
-             << " | |    |  __  |  __|  \\___  \\___ \\" << endl
-             << " | |____| |  | | |____ ____) |___) |" << endl
-             << "  \\_____|_|  |_|______|_____/_____/" << endl;
-            
-        cout << "Enter any key to continue" << endl;
-        string s;
-        cin >> s;
-
+        printLogo();
         playOneChessGame();
 
         cout << "Do you want to play again? (y for yes, anything else for no): ";
         cin >> continuePlaying;
     }
+}
+
+void ChessGame::printLogo()
+{
+    cout << "   _____ _    _ ______  _____ _____ " << endl
+         << "  / ____| |  | |  ____|/ ____/ ____|" << endl
+         << " | |    | |__| | |__  | (___| (___  " << endl
+         << " | |    |  __  |  __|  \\___  \\___ \\" << endl
+         << " | |____| |  | | |____ ____) |___) |" << endl
+         << "  \\_____|_|  |_|______|_____/_____/" << endl;
+            
+        cout << "Enter any key to continue" << endl;
+        string s;
+        cin >> s;
 }
 
 void ChessGame::playOneChessGame()
@@ -55,7 +59,8 @@ void ChessGame::playOneChessGame()
 void ChessGame::setChessGame()
 {
     board.setBoard();
-    turn = WHITE;
+    this->turn = WHITE;
+    this->lastTakenFigure = EMPTY;
 }
 
 bool ChessGame::thereIsWinner() const
@@ -207,7 +212,7 @@ vector<pair<int, int>> ChessGame::generateMovePath() const
 }
 
 void ChessGame::moveFigure()
-{
+{   
     if(board.getSquare(destination).getType() != EMPTY)
     {
         lastTakenFigure = board.getType(destination);
