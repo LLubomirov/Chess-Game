@@ -1,6 +1,3 @@
-#include <unistd.h>
-#include <sys/types.h>
-
 class ExtendedChessGame : ChessGame
 {
 public:
@@ -200,6 +197,30 @@ TEST_CASE("Test figureOnTurn == false for black rook but the white figures are o
     CHECK(game.figureOnTurn() == false);
 }
 
+TEST_CASE("Test figureOnTurn == false for white rook but the black figures are on turn")
+{
+    ExtendedChessGame game;
+    game.switchTurn();
+    game.setStart({'D', '3'});
+
+    Rook rook(WHITE);
+    game.setFigureOn(&rook, {'D', '3'});
+
+    CHECK(game.figureOnTurn() == false);
+}
+
+TEST_CASE("Test figureOnTurn == false for white pawn but the black figures are on turn")
+{
+    ExtendedChessGame game;
+    game.switchTurn();
+    game.setStart({'F', '2'});
+
+    Pawn pawn(WHITE);
+    game.setFigureOn(&pawn, {'F', '2'});
+
+    CHECK(game.figureOnTurn() == false);
+}
+
 TEST_CASE("Test landEmptyOrEnemy for black queen on A2 to empty square A5")
 {
     ExtendedChessGame game;
@@ -257,6 +278,37 @@ TEST_CASE("Test landEmptyOrEnemy == false for white queen on A2 to white bishop 
     CHECK(game.landEmptyOrEnemy() == false);
 }
 
+TEST_CASE("Test landEmptyOrEnemy == false for white queen on A2 to white bishop on C4")
+{
+    ExtendedChessGame game;
+    game.setStart({'A', '2'});
+    game.setDestination({'C', '4'});
+
+    Queen queen(WHITE);
+    game.setFigureOn(&queen, {'A', '2'});
+
+    Bishop bishop(WHITE);
+    game.setFigureOn(&bishop, {'C', '4'});
+
+    CHECK(game.landEmptyOrEnemy() == false);
+}
+
+TEST_CASE("Test landEmptyOrEnemy == false for black knight on D1 to black rook on E3")
+{
+    ExtendedChessGame game;
+    game.switchTurn();
+    game.setStart({'D', '1'});
+    game.setDestination({'E', '3'});
+
+    Knight knight(BLACK);
+    game.setFigureOn(&knight, {'D', '1'});
+
+    Rook rook(BLACK);
+    game.setFigureOn(&rook, {'E', '3'});
+
+    CHECK(game.landEmptyOrEnemy() == false);
+}
+
 TEST_CASE("Test isReachable for black queen on A2 to A5")
 {
     ExtendedChessGame game;
@@ -298,10 +350,39 @@ TEST_CASE("Test isReachable == false for black queen on A2 to C4 with knight on 
     ExtendedChessGame game;
     game.setStart({'A', '2'});
     game.setDestination({'C', '4'});
+
     Queen queen(BLACK);
     game.setFigureOn(&queen, {'A', '2'});
     Knight knight(WHITE);
     game.setFigureOn(&knight, {'B', '3'});
+
+    CHECK(game.isReachable() == false);
+}
+
+TEST_CASE("Test isReachable == false for black queen on A2 to A4 with pawn on A3")
+{
+    ExtendedChessGame game;
+    game.setStart({'A', '2'});
+    game.setDestination({'C', '4'});
+
+    Queen queen(BLACK);
+    game.setFigureOn(&queen, {'A', '2'});
+    Pawn pawn(WHITE);
+    game.setFigureOn(&pawn, {'B', '3'});
+
+    CHECK(game.isReachable() == false);
+}
+
+TEST_CASE("Test isReachable == false for white bishop on F6 to D4 with pawn on E5")
+{
+    ExtendedChessGame game;
+    game.setStart({'F', '6'});
+    game.setDestination({'D', '4'});
+
+    Bishop bishop(BLACK);
+    game.setFigureOn(&bishop, {'F', '6'});
+    Pawn pawn(WHITE);
+    game.setFigureOn(&pawn, {'E', '5'});
 
     CHECK(game.isReachable() == false);
 }

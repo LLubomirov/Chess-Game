@@ -16,10 +16,10 @@
 int main()
 {
 	// uncomment to start unit tests
-	// doctest::Context().run();
+	doctest::Context().run();
 
-	ChessGame chessGame;
-	chessGame.play();
+	// ChessGame chessGame;
+	// chessGame.play();
 
 	return 0;
 }

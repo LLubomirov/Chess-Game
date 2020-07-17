@@ -394,7 +394,6 @@ TEST_CASE("Test setBoard put black pawn on H7")
 }
 
 ///Testing setBoard and more specificly if on the empty squares are placed empty figures
-
 TEST_CASE("Test setBoard put empty figure on A3")
 {
     ExtendedBoard b;
