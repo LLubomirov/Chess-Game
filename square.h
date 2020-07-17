@@ -2,6 +2,7 @@
 #define __SQUARE_H
 
 #include "./Figures/figure.h"
+#include "./Figures/empty_figure.h"
 
 class Square
 {
@@ -12,9 +13,13 @@ public:
     Figure *getFigure() const;
     FigureColor getColor() const;
     FigureType getType() const;
-    void setFigure(Figure *newFigure);
 
 private:
+    friend class Board;
+    friend class ExtendedSquare;
+
+    void setFigure(Figure*);
+
     Figure* figure;
 };
 

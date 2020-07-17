@@ -11,12 +11,6 @@ public:
 
 private:
     friend class ExtendedChessGame;
-
-    Board board;
-    FigureType lastTakenFigure = EMPTY;
-    FigureColor turn = WHITE;
-    pair<int, int> start;
-    pair<int, int> destination;
     
     void printLogo();
     void playOneChessGame();
@@ -35,6 +29,12 @@ private:
     void moveFigure() ;
     void switchTurn();
     void announceWinner() const;
+
+    Board board;
+    FigureType lastTakenFigure = EMPTY;
+    FigureColor turn = WHITE;
+    pair<int, int> start;
+    pair<int, int> destination;
 };
 
 #include "chessGame.cpp"

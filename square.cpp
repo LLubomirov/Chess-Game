@@ -1,6 +1,6 @@
 Square::Square()
 {
-    Figure *figure;
+    EmptyFigure *figure = new EmptyFigure(NONE);
     this->figure = figure;
 }
 

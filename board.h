@@ -8,12 +8,11 @@
 #include "./Figures/rook.h"
 #include "./Figures/knight.h"
 #include "./Figures/pawn.h"
-#include "./Figures/empty_figure.h"
 
 #define BOARD_ROWS 8
 #define BOARD_COLUMNS 8
 
-class Board : private Square
+class Board
 {
 public:
 	Board();
@@ -25,14 +24,14 @@ public:
 	void printBoard();
 	
 private:
-	Square board[BOARD_ROWS][BOARD_COLUMNS];
-
-	friend class ExtendedBoard; 
 	friend class ChessGame;
+	friend class ExtendedBoard; 
 	friend class ExtendedChessGame;
 
 	void setBoard();
 	void setFigureOn(Figure*, pair<int, int>); 
+
+	Square board[BOARD_ROWS][BOARD_COLUMNS];
 };
 
 #include "board.cpp"
