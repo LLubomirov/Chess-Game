@@ -24,17 +24,20 @@ vector<pair<int, int>> Queen::generatePath(pair<int, int> start, pair<int, int> 
 
 bool Queen::isAccessible(pair<int, int> start, pair<int, int> destination) const
 {
-    return(isStraightMove(start, destination) || isDiagonalMove(start, destination));
+    return isStraightMove(start, destination) || 
+           isDiagonalMove(start, destination);
 }
 
 bool Queen::isStraightMove(pair<int, int> start, pair<int, int> destination) const
 {
-    return isHorizontalMove(start, destination) || isVerticalMove(start, destination);
+    return isHorizontalMove(start, destination) || 
+           isVerticalMove(start, destination);
 }
 
 bool Queen::isHorizontalMove(pair<int, int> start, pair<int, int> destination) const
 {
-    return start.first == destination.first && start.second != destination.second;
+    return start.first == destination.first && 
+           start.second != destination.second;
 }
 
 bool Queen::isVerticalMove(pair<int, int> start, pair<int, int> destination) const
@@ -50,7 +53,6 @@ bool Queen::isDiagonalMove(pair<int, int> start, pair<int, int> destination) con
 vector<pair<int, int>> Queen::generatePathHelper(pair<int, int> start, pair<int, int> destination) const
 {
     vector<pair<int, int>> path;
-
     if(isStraightMove(start, destination)) 
     {
         path = generateStraightPath(start, destination);
@@ -66,7 +68,6 @@ vector<pair<int, int>> Queen::generatePathHelper(pair<int, int> start, pair<int,
 vector<pair<int, int>> Queen::generateStraightPath(pair<int, int> start, pair<int, int> destination) const
 {
     vector<pair<int, int>> path;
-
     if(isHorizontalMove(start, destination)) 
     {
         path = generateHorizontalPath(start, destination);
@@ -75,62 +76,63 @@ vector<pair<int, int>> Queen::generateStraightPath(pair<int, int> start, pair<in
     {
         path = generateVerticalPath(start, destination);
     }
+
     return path;
 }
 
 vector<pair<int, int>> Queen::generateHorizontalPath(pair<int, int> start, pair<int, int> destination) const
 {
+    int columnShift = destination.second - start.second;
+    int columnDirection = columnShift / (abs(columnShift));
+
     vector<pair<int, int>> path;
-
-    int columnIncrement = destination.second - start.second;
-    int directionOnColumn = columnIncrement / (abs(columnIncrement));
-
-    int currentColumn = start.second;
-    do
+    int currentShift = 1;
+    while (currentShift <= abs(columnShift))
     {
-        currentColumn += directionOnColumn;
-        path.push_back({destination.first, currentColumn});    
+        pair<int, int> newStep = {start.first, start.second + columnDirection * currentShift};
+        path.push_back(newStep);
+
+        currentShift++;
     }
-    while (currentColumn != destination.second);
 
     return path;
 }
 
 vector<pair<int, int>> Queen::generateVerticalPath(pair<int, int> start, pair<int, int> destination) const
 {
+    int rowShift = destination.first - start.first;
+    int rowDirection = rowShift / (abs(rowShift));
+
     vector<pair<int, int>> path;
-
-    int rowIncrement = destination.first - start.first;
-    int directionOnRow = rowIncrement / (abs(rowIncrement));
-
-    int currentRow = start.first;
-    do
+    int currentShift = 1;
+    while(currentShift <= abs(rowShift))
     {
-        currentRow += directionOnRow;
-        path.push_back({currentRow, destination.second});  
+        pair<int, int> newStep = {start.first + rowDirection * currentShift, start.second};
+        path.push_back(newStep);
+
+        currentShift++;
     }
-    while(currentRow != destination.first);
 
     return path;
 }
 
 vector<pair<int, int>> Queen::generateDiagonalPath(pair<int, int> start, pair<int, int> destination) const
 {
+    int rowShift = destination.first - start.first;
+    int columnShift = destination.second - start.second;
+
+    int rowDirection = rowShift / (abs(rowShift));
+    int columnDirection = columnShift / (abs(columnShift));
+
     vector<pair<int, int>> path;
-
-    int rowIncrement = destination.first - start.first;
-    int columnIncrement = destination.second - start.second;
-
-    int directionOnRow = rowIncrement / (abs(rowIncrement));
-    int directionOnColumn = columnIncrement / (abs(columnIncrement));
-    
-    int i = 0;
-    do
+    int currentShift = 1;
+    while(currentShift <= abs(rowShift))
     {
-        i++;
-        path.push_back({start.first + directionOnRow * i, start.second + directionOnColumn * i});
+        pair<int, int> newStep = {start.first + rowDirection * currentShift, start.second + columnDirection * currentShift};
+        path.push_back(newStep);
+
+        currentShift++;
     }
-    while(i < abs(rowIncrement));
 
     return path;
 }

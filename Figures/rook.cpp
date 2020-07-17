@@ -24,17 +24,20 @@ vector<pair<int, int>> Rook::generatePath(pair<int, int> start, pair<int, int> d
 
 bool Rook::isAccessible(pair<int, int> start, pair<int, int> destination) const
 {
-    return(isHorizontalMove(start, destination) || isVerticalMove(start, destination));
+    return isHorizontalMove(start, destination) || 
+           isVerticalMove(start, destination);
 }
 
 bool Rook::isHorizontalMove(pair<int, int> start, pair<int, int> destination) const
 {
-    return start.first == destination.first && start.second != destination.second;
+    return start.first == destination.first && 
+           start.second != destination.second;
 }
 
 bool Rook::isVerticalMove(pair<int, int> start, pair<int, int> destination) const
 {
-    return start.first != destination.first && start.second == destination.second;
+    return start.first != destination.first && 
+           start.second == destination.second;
 }
 
 vector<pair<int, int>> Rook::generatePathHelper(pair<int, int> start, pair<int, int> destination) const
@@ -54,32 +57,36 @@ vector<pair<int, int>> Rook::generatePathHelper(pair<int, int> start, pair<int, 
 
 vector<pair<int, int>> Rook::generateHorizontalPath(pair<int, int> start, pair<int, int> destination) const
 {
-    int startY = start.second;
+    int columnShift = destination.second - start.second;
+    int columnDirection = columnShift / (abs(columnShift));
+
     vector<pair<int, int>> path;
-    int yIncrement = (destination.second - startY) / (abs(destination.second - startY));
-    int currentY = startY;
-    do
+    int currentShift = 1;
+    while (currentShift <= abs(columnShift))
     {
-        currentY += yIncrement;
-        path.push_back({destination.first, currentY});    
+        pair<int, int> newStep = {start.first, start.second + columnDirection * currentShift};
+        path.push_back(newStep);
+
+        currentShift++;
     }
-    while (currentY != destination.second);
 
     return path;
 }
 
 vector<pair<int, int>> Rook::generateVerticalPath(pair<int, int> start, pair<int, int> destination) const
 {
-    int startX = start.first;
+    int rowShift = destination.first - start.first;
+    int rowDirection = rowShift / (abs(rowShift));
+
     vector<pair<int, int>> path;
-    int xIncrement = (destination.first - startX) / (abs(destination.first - startX));
-    int currentX = startX;
-    do
+    int currentShift = 1;
+    while(currentShift <= abs(rowShift))
     {
-        currentX += xIncrement;
-        path.push_back({currentX, destination.second});  
+        pair<int, int> newStep = {start.first + rowDirection * currentShift, start.second};
+        path.push_back(newStep);
+
+        currentShift++;
     }
-    while(currentX != destination.first);
 
     return path;
 }

@@ -24,25 +24,33 @@ vector<pair<int, int>> King::generatePath(pair<int, int> start, pair<int, int> d
 
 bool King::isAccessible(pair<int, int> start, pair<int, int> destination) const
 {
-    return(isStraightMove(start, destination) || isDiagonalMove(start, destination));
+    return isStraightMove(start, destination) || 
+           isDiagonalMove(start, destination);
 }
 
 bool King::isStraightMove(pair<int, int> start, pair<int, int> destination) const
 {
-    return isHorizontalMove(start, destination) || isVerticalMove(start, destination);
+    return isHorizontalMove(start, destination) || 
+           isVerticalMove(start, destination);
 }
 
 bool King::isHorizontalMove(pair<int, int> start, pair<int, int> destination) const
 {
-    return start.first == destination.first && abs(start.second - destination.second) == 1;
+    return start.first == destination.first && 
+           abs(start.second - destination.second) == 1;
 }
 
 bool King::isVerticalMove(pair<int, int> start, pair<int, int> destination) const
 {
-    return abs(start.first - destination.first) == 1 && start.second == destination.second;
+    return abs(start.first - destination.first) == 1 && 
+           start.second == destination.second;
 }
 
 bool King::isDiagonalMove(pair<int, int> start, pair<int, int> destination) const
 {
-    return abs(start.first - destination.first) == abs(start.second - destination.second) && abs(start.first - destination.first) == 1;
+    int rowShift = destination.first - start.first;
+    int columnShift = destination.second - start.second;
+
+    return abs(rowShift) == 1 && 
+           abs(columnShift) == 1;
 }

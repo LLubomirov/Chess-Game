@@ -24,21 +24,19 @@ vector<pair<int, int>> Pawn::generatePath(pair<int, int> start, pair<int, int> d
 
 bool Pawn::isAccessible(pair<int, int> start, pair<int, int> destination) const
 {
-    int verticalIncrement = destination.first - start.first;
-    int horizontalIncrement = destination.second - start.second;
+    int rowShift = destination.first - start.first;
+    int columnShift = destination.second - start.second;
     
-    bool isValidVerticalMove = (abs(verticalIncrement) == 1 && horizontalIncrement == 0);
+    bool isValidVerticalMove = (abs(rowShift) == 1 && columnShift == 0);
     bool isCorrectDirection = false;
-    if(this->getColor() == WHITE)
+    if(getColor() == WHITE)
     {
-        isCorrectDirection = (verticalIncrement == -1);
+        isCorrectDirection = (rowShift == -1);
     }
     else
     {
-        isCorrectDirection = (verticalIncrement == 1);
+        isCorrectDirection = (rowShift == 1);
     }
 
-    return isValidVerticalMove 
-    && isCorrectDirection
-    ;
+    return isValidVerticalMove && isCorrectDirection;
 }

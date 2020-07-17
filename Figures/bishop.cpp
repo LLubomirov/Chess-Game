@@ -30,17 +30,19 @@ bool Bishop::isAccessible(pair<int, int> start, pair<int, int> destination) cons
 vector<pair<int, int>> Bishop::generatePathHelper(pair<int, int> start, pair<int, int> destination) const
 {
     vector<pair<int, int>> path;
-    int startX = start.first;
-    int startY = start.second;
-    int xIncrement = (destination.first - startX) / (abs(destination.first - startX));
-    int yIncrement = (destination.second - startY) / (abs(destination.second - startY));
-    int i = 0;
-    do
+
+    int rowShift = destination.first - start.first;
+    int columnShift = destination.second - start.second;
+
+    int rowDirection = rowShift / (abs(rowShift));
+    int columnDirection = columnShift / (abs(columnShift));
+
+    int currentShift = 1;
+    while(currentShift <= abs(rowShift))
     {
-        i++;
-        path.push_back({startX + xIncrement*i, startY + yIncrement*i});
+        path.push_back({start.first + rowDirection * currentShift, start.second + columnDirection * currentShift});
+        currentShift++;
     }
-    while(i < abs(startX - destination.first));
 
     return path;
 }

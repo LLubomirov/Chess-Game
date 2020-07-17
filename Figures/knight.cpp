@@ -24,6 +24,9 @@ vector<pair<int, int>> Knight::generatePath(pair<int, int> start, pair<int, int>
 
 bool Knight::isAccessible(pair<int, int> start, pair<int, int> destination) const
 {
-    return (abs(start.first - destination.first) == 2 && abs(start.second - destination.second) == 1) ||
-            (abs(start.first - destination.first) == 1 && abs(start.second - destination.second) == 2);
+    int rowShift = start.first - destination.first;
+    int columnShift = start.second - destination.second;
+
+    return (abs(rowShift) == 2 && abs(columnShift) == 1) ||
+           (abs(rowShift) == 1 && abs(columnShift) == 2);
 }
